@@ -61,6 +61,8 @@ export default function App() {
                 paginator rows={10} rowsPerPageOptions={[10, 25, 50]}
                 filters={filters}
                 header={header}
+                removableSort
+                sortField="followers"
             >
                 <Column
                     field="rank"
