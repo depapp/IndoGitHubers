@@ -4,6 +4,7 @@ import { Column } from 'primereact/column'
 import { Avatar } from 'primereact/avatar'
 import { InputText } from 'primereact/inputtext'
 import { FilterMatchMode } from 'primereact/api'
+import { Analytics } from '@vercel/analytics/react'
 
 export default function App() {
     const [isLoading, setIsLoading] = useState(true)
@@ -52,7 +53,7 @@ export default function App() {
 
     return (
         <div className="card">
-            
+            <Analytics />
             <h1>IndoGitHubers</h1>
             {isLoading ? <div>Loading...</div> : 
             <DataTable 

@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.0.2",
     "primeicons": "^6.0.1",
     "primereact": "^9.6.2",
     "react": "^18.2.0",
