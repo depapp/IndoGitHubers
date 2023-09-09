@@ -53,7 +53,7 @@ export default function App() {
                 <span className="p-input-icon-left">
                     <i className="pi pi-search" />
                     <InputText
-                        placeholder='Keyword Search'
+                        placeholder='Search Username'
                         onInput={(e) =>
                         setFilters({
                             global: { value: e.target.value, matchMode: FilterMatchMode.CONTAINS }
