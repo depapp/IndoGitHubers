@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { DataTable } from 'primereact/datatable'
 import { Column } from 'primereact/column'
 import { Avatar } from 'primereact/avatar'
 import { InputText } from 'primereact/inputtext'
 import { FilterMatchMode } from 'primereact/api'
 import { Analytics } from '@vercel/analytics/react'
+import { Accordion, AccordionTab } from 'primereact/accordion'
 
 export default function App() {
     const [isLoading, setIsLoading] = useState(true)
@@ -15,11 +16,7 @@ export default function App() {
         fetch("https://raw.githubusercontent.com/depapp/0o0/main/data.json")
           .then((response) => response.json())
           .then((data) => {
-            const dataWithRank = data.map((item, index) => ({
-              ...item,
-              rank: index + 1
-            }))
-            setData(dataWithRank)
+            setData(data)
             setIsLoading(false)
           })
     }, [])
@@ -31,6 +28,24 @@ export default function App() {
     const [filters, setFilters] = useState({
         global: { value: null, matchMode:FilterMatchMode.CONTAINS }
     })
+
+    const getMedalEmoji = (rank) => {
+        let emoji;
+        switch(rank) {
+            case 1:
+                emoji = '🥇';
+                break;
+            case 2:
+                emoji = '🥈';
+                break;
+            case 3:
+                emoji = '🥉';
+                break;
+            default:
+                return `#${rank}`;
+        }
+        return <span style={{fontSize: '2em'}}>{emoji}</span>
+    }    
 
     const renderHeader = () => {
         return (
@@ -55,6 +70,7 @@ export default function App() {
         <div className="card">
             <Analytics />
             <h1>IndoGitHubers</h1>
+            <h2>~check your GitHub rank~</h2>
             {isLoading ? <div>Loading...</div> : 
             <DataTable 
                 value={data}
@@ -63,17 +79,11 @@ export default function App() {
                 filters={filters}
                 header={header}
                 removableSort
-                sortField="followers"
             >
-                <Column
-                    field="rank"
-                    header="Rank"
-                    style={{ width: '3%' }}
-                />
                 <Column
                     field="avatarUrl"
                     header="Name"
-                    style={{ width: '25%' }}
+                    style={{ width: '20%' }}
                     body={(rowData) => (
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                             <Avatar
@@ -102,6 +112,12 @@ export default function App() {
                     )}
                 />
                 <Column
+                    field="followerRank"
+                    header="Followers Rank"
+                    style={{ width: '5%' }}
+                    body={(rowData) => getMedalEmoji(rowData.followerRank)}
+                />
+                <Column
                     field="followers"
                     header="Followers"
                     sortable
@@ -109,6 +125,12 @@ export default function App() {
                     body={(rowData) =>
                         formatNumberWithThousandsSeparator(rowData.followers)
                     }
+                />
+                <Column
+                    field="contributionRank"
+                    header="Contributions Rank"
+                    style={{ width: '5%' }}
+                    body={(rowData) => getMedalEmoji(rowData.contributionRank)}
                 />
                 <Column
                     field="contributions"
@@ -129,6 +151,22 @@ export default function App() {
                 />
             </DataTable>
             }
+        {/* <Accordion activeIndex={0}>
+            <AccordionTab header="kenapa akun github saya tidak ada di daftar ini?">
+                <p className="m-0">
+                    data akun github yang diambil untuk masuk daftar diatas harus memiliki minimal 42 followers.
+                </p>
+            </AccordionTab>
+            <AccordionTab header="kenapa saya sudah memiliki minimal followers diatas tapi tetap tidak masuk ke daftar ini?">
+            <p className="m-0">
+                {
+                    "agar dapat masuk ke daftar diatas, anda harus menuliskan informasi lokasi `indonesia` \n atau menuliskan kota-kota besar berikut ini di profile github anda. \n \n `jakarta`, `surabaya`, `bandung`, `medan`, `bekasi`, `semarang`, `tangerang`, `depok`, `makassar`, `palembang`"
+                    .split('\n')
+                    .map((line, i) => <React.Fragment key={i}>{line}<br /></React.Fragment>)
+                }
+            </p>
+            </AccordionTab>
+        </Accordion> */}
         </div>
     )
 }
