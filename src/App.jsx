@@ -6,6 +6,7 @@ import { InputText } from 'primereact/inputtext'
 import { FilterMatchMode } from 'primereact/api'
 import { Analytics } from '@vercel/analytics/react'
 import { Accordion, AccordionTab } from 'primereact/accordion'
+import { Tooltip } from 'primereact/tooltip'
 
 export default function App() {
     const [isLoading, setIsLoading] = useState(true)
@@ -13,7 +14,7 @@ export default function App() {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch("https://raw.githubusercontent.com/depapp/0o0/main/data.json")
+        fetch("https://raw.githubusercontent.com/depapp/0o0/main/indogithubers.json")
           .then((response) => response.json())
           .then((data) => {
             setData(data)
@@ -69,11 +70,16 @@ export default function App() {
     return (
         <div className="card">
             <Analytics />
+            <Tooltip target=".custom-target-icon" />
             <h1>IndoGitHubers</h1>
-            <h2>~check your GitHub rank~</h2>
+            <h2>check your GitHub rank <i className="custom-target-icon pi pi-info-circle"
+                style={{ fontSize: '1.25rem' }}
+                data-pr-tooltip={`your GitHub account needs to have at least ${data.MinimumFollowerCount} followers to be on the list.`}
+                data-pr-position="right"></i>
+            </h2>
             {isLoading ? <div>Loading...</div> : 
             <DataTable 
-                value={data}
+                value={data.users}
                 tableStyle={{ minWidth: '50rem' }}
                 paginator rows={10} rowsPerPageOptions={[10, 25, 50]}
                 filters={filters}
