@@ -5,12 +5,11 @@ import { Avatar } from 'primereact/avatar'
 import { InputText } from 'primereact/inputtext'
 import { FilterMatchMode } from 'primereact/api'
 import { Analytics } from '@vercel/analytics/react'
-import { Accordion, AccordionTab } from 'primereact/accordion'
 import { Tooltip } from 'primereact/tooltip'
 
 export default function App() {
     const [isLoading, setIsLoading] = useState(true)
-
+    const [lastUpdated, setLastUpdated] = useState(null)
     const [data, setData] = useState([])
 
     useEffect(() => {
@@ -19,6 +18,13 @@ export default function App() {
           .then((data) => {
             setData(data)
             setIsLoading(false)
+          })
+
+        fetch("https://api.github.com/repos/depapp/most-active-github-users-counter/commits?path=indogithubers.json")
+          .then((response) => response.json())
+          .then((commits) => {
+            const lastUpdated = new Date(commits[0].commit.committer.date)
+            setLastUpdated(lastUpdated)
           })
     }, [])
 
@@ -31,19 +37,19 @@ export default function App() {
     })
 
     const getMedalEmoji = (rank) => {
-        let emoji;
+        let emoji
         switch(rank) {
             case 1:
-                emoji = '🥇';
-                break;
+                emoji = '🥇'
+                break
             case 2:
-                emoji = '🥈';
-                break;
+                emoji = '🥈'
+                break
             case 3:
-                emoji = '🥉';
-                break;
+                emoji = '🥉'
+                break
             default:
-                return `#${rank}`;
+                return `#${rank}`
         }
         return <span style={{fontSize: '2em'}}>{emoji}</span>
     }    
@@ -67,16 +73,49 @@ export default function App() {
 
     const header = renderHeader()
 
+    const formatLastUpdated = () => {
+        if (!lastUpdated) {
+          return ""
+        }
+      
+        const today = new Date()
+        const yesterday = new Date()
+        yesterday.setDate(yesterday.getDate() - 1)
+        const twoDaysAgo = new Date()
+        twoDaysAgo.setDate(twoDaysAgo.getDate() - 2)
+      
+        const isToday = lastUpdated.toDateString() === today.toDateString()
+        const isYesterday = lastUpdated.toDateString() === yesterday.toDateString()
+        const isTwoDaysAgo = lastUpdated.toDateString() === twoDaysAgo.toDateString()
+      
+        const timeOptions = { hour: "2-digit", minute: "2-digit", hour12: false }
+        const formattedTime = lastUpdated.toLocaleTimeString(undefined, timeOptions)
+      
+        if (isToday) {
+          return `Today at ${formattedTime} WIB`
+        } else if (isYesterday) {
+          return `Yesterday at ${formattedTime} WIB`
+        } else if (isTwoDaysAgo) {
+          return `2 Days Ago at ${formattedTime} WIB`
+        } else {
+          return lastUpdated.toLocaleDateString()
+        }
+    }      
+
     return (
         <div className="card">
             <Analytics />
             <Tooltip target=".custom-target-icon" />
             <h1>IndoGitHubers</h1>
-            <h2>check your GitHub rank <i className="custom-target-icon pi pi-info-circle"
+            <h2>Check Your GitHub Rank <i className="custom-target-icon pi pi-info-circle"
                 style={{ fontSize: '1.25rem' }}
                 data-pr-tooltip={`your GitHub account needs to have at least ${data.MinimumFollowerCount} followers to be on the list.`}
                 data-pr-position="right"></i>
             </h2>
+            <h3>Last Updated: {formatLastUpdated()} <i className="custom-target-icon pi pi-info-circle"
+                style={{ fontSize: '1rem' }}
+                data-pr-tooltip={`this data is not updated in real time. the data will be updated every 2 days.`}
+                data-pr-position="right"></i></h3>
             {isLoading ? <div>Loading...</div> : 
             <DataTable 
                 value={data.users}
@@ -157,22 +196,6 @@ export default function App() {
                 />
             </DataTable>
             }
-        {/* <Accordion activeIndex={0}>
-            <AccordionTab header="kenapa akun github saya tidak ada di daftar ini?">
-                <p className="m-0">
-                    data akun github yang diambil untuk masuk daftar diatas harus memiliki minimal 42 followers.
-                </p>
-            </AccordionTab>
-            <AccordionTab header="kenapa saya sudah memiliki minimal followers diatas tapi tetap tidak masuk ke daftar ini?">
-            <p className="m-0">
-                {
-                    "agar dapat masuk ke daftar diatas, anda harus menuliskan informasi lokasi `indonesia` \n atau menuliskan kota-kota besar berikut ini di profile github anda. \n \n `jakarta`, `surabaya`, `bandung`, `medan`, `bekasi`, `semarang`, `tangerang`, `depok`, `makassar`, `palembang`"
-                    .split('\n')
-                    .map((line, i) => <React.Fragment key={i}>{line}<br /></React.Fragment>)
-                }
-            </p>
-            </AccordionTab>
-        </Accordion> */}
         </div>
     )
 }
