@@ -14,7 +14,7 @@ export default function App() {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch("https://raw.githubusercontent.com/depapp/0o0/main/indogithubers.json")
+        fetch("https://raw.githubusercontent.com/depapp/most-active-github-users-counter/master/indogithubers.json")
           .then((response) => response.json())
           .then((data) => {
             setData(data)
