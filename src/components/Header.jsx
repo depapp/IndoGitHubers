@@ -37,28 +37,28 @@ export const Header = ({ data, lastUpdated }) => {
   };
 
   return (
-    <>
-      <Analytics />
-      <Tooltip target=".custom-target-icon" />
-      <h1>IndoGitHubers</h1>
-      <h2>
-        Check Your GitHub Rank{" "}
-        <i
-          className="custom-target-icon pi pi-info-circle"
-          style={{ fontSize: "1.25rem" }}
-          data-pr-tooltip={`your GitHub account needs to have at least ${data.MinimumFollowerCount} followers to be on the list.`}
-          data-pr-position="right"
-        ></i>
-      </h2>
-      <h3>
-        Last Updated: {formatLastUpdated()}{" "}
-        <i
-          className="custom-target-icon pi pi-info-circle"
-          style={{ fontSize: "1rem" }}
-          data-pr-tooltip={`this data is not updated in real time. the data will be updated every 2 days.`}
-          data-pr-position="right"
-        ></i>
-      </h3>
-    </>
-  );
+    <div className="header-content">
+        <Analytics />
+        <Tooltip target=".custom-target-icon" />
+        <h1>IndoGitHubers</h1>
+        <h2>
+            Check Your GitHub Rank{" "}
+            <i
+                className="custom-target-icon pi pi-info-circle"
+                style={{ fontSize: "1.25rem" }}
+                data-pr-tooltip={`your GitHub account needs to have at least ${data.MinimumFollowerCount} followers to be on the list.`}
+                data-pr-position="right"
+            ></i>
+        </h2>
+        <h3>
+            Last Updated: {formatLastUpdated()}{" "}
+            <i
+                className="custom-target-icon pi pi-info-circle"
+                style={{ fontSize: "1rem" }}
+                data-pr-tooltip={`this data is not updated in real time. the data will be updated every 2 days.`}
+                data-pr-position="right"
+            ></i>
+        </h3>
+    </div>
+);
 };
