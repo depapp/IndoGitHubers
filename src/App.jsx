@@ -3,6 +3,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Avatar } from "primereact/avatar";
 import { InputText } from "primereact/inputtext";
+import { Dropdown } from "primereact/dropdown"; 
 import { Header } from "./components/Header";
 import { FilterMatchMode } from "primereact/api";
 
@@ -10,6 +11,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState(null);
   const [data, setData] = useState([]);
+
 
   useEffect(() => {
     fetch(
@@ -30,6 +32,12 @@ export default function App() {
         setLastUpdated(lastUpdated);
       });
   }, []);
+  const filterOptions = [ 
+  { name: "Filter by Followers", value: "followers" },
+  { name: "Filter by Contributors", value: "contributions" },
+];
+
+const [sortBy, setSortBy] = useState(filterOptions[0].value); 
 
   const formatNumberWithThousandsSeparator = (number) => {
     return number.toLocaleString();
@@ -57,18 +65,37 @@ export default function App() {
     return <span style={{ fontSize: "2em" }}>{emoji}</span>;
   };
 
+  const sortData = (field) => {
+    const sortedData = [...data.users].sort((a, b) => b[field] - a[field]); 
+    setData({ ...data, users: sortedData });
+};
+
+
   const renderHeader = () => {
     return (
       <div className="flex justify-content-end">
+      <Dropdown 
+      value={sortBy}
+      options={filterOptions}
+      optionLabel="name"
+      onChange={(e) => {
+        setSortBy(e.value);
+        sortData(e.value);
+      }}
+      placeholder="Sort By"
+      style={{ marginRight: '10px' }}
+    />
+    
         <span className="p-input-icon-left">
           <i className="pi pi-search" />
           <InputText
-            placeholder="Search Username"
+            placeholder={`Search`}
             onInput={(e) =>
               setFilters({
                 global: {
                   value: e.target.value,
                   matchMode: FilterMatchMode.CONTAINS,
+                  field: sortBy 
                 },
               })
             }
