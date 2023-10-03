@@ -29,7 +29,8 @@ $ git push origin name-of-your-branch
 ```
 - Once you've pushed your branch, don't forget to make a pull request into the `master` branch.
 
-
+# contributors
+<a href="https://github.com/depapp/IndoGitHubers/graphs/contributors"><img src="https://contrib.rocks/image?repo=depapp/IndoGitHubers" alt="All the amazing contributors of IndoGitHubers"></a>
 
 
 
