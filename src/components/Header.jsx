@@ -1,6 +1,5 @@
 import { Analytics } from "@vercel/analytics/react";
 import { Tooltip } from "primereact/tooltip";
-import { FilterMatchMode } from "primereact/api";
 
 export const Header = ({ data, lastUpdated }) => {
   const formatLastUpdated = () => {
@@ -37,7 +36,7 @@ export const Header = ({ data, lastUpdated }) => {
   };
 
   return (
-    <div className="header-content">
+    <div className="header-content" leading-3>
         <Analytics />
         <Tooltip target=".custom-target-icon" />
         <h1>IndoGitHubers</h1>
@@ -55,7 +54,7 @@ export const Header = ({ data, lastUpdated }) => {
             <i
                 className="custom-target-icon pi pi-info-circle"
                 style={{ fontSize: "1rem" }}
-                data-pr-tooltip={`this data is not updated in real time. the data will be updated every 2 days.`}
+                data-pr-tooltip={`this data is not updated in real time. the data will be updated daily.`}
                 data-pr-position="right"
             ></i>
         </h3>
