@@ -33,8 +33,8 @@ export default function App() {
       });
   }, []);
   const filterOptions = [ 
-  { name: "Filter by Followers", value: "followers" },
-  { name: "Filter by Contributors", value: "contributions" },
+  { name: "Sort by Followers", value: "followers" },
+  { name: "Sort by Contributors", value: "contributions" },
 ];
 
 const [sortBy, setSortBy] = useState(filterOptions[0].value); 
