@@ -89,7 +89,7 @@ const [sortBy, setSortBy] = useState(filterOptions[0].value);
         <span className="p-input-icon-left">
           <i className="pi pi-search" />
           <InputText
-            placeholder={`Search`}
+            placeholder={`Search Username`}
             onInput={(e) =>
               setFilters({
                 global: {
