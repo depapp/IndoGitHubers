@@ -18,19 +18,19 @@ To install the IndoGitHubers app, you can either clone the repository and run it
 
 If you choose to run it locally, follow these steps:
 - Clone the repository
-```bash
+```
 git clone https://github.com/depapp/indogithubers.git
 ```
 - Navigate to the project directory
-```bash
+```
 cd indogithubers
 ```
 - Install the dependencies
-```bash
+```
 pnpm install
 ```
 - Run the app
-```bash
+```
 pnpm run dev
 ```
 
