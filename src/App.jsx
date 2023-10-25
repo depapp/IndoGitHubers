@@ -34,7 +34,7 @@ export default function App() {
   }, []);
   const filterOptions = [ 
   { name: "Sort by Followers", value: "followers" },
-  { name: "Sort by Contributors", value: "contributions" },
+  { name: "Sort by Contributions", value: "contributions" },
 ];
 
 const [sortBy, setSortBy] = useState(filterOptions[0].value); 
