@@ -6,6 +6,7 @@ import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown"; 
 import { Header } from "./components/Header";
 import { FilterMatchMode } from "primereact/api";
+import { Button } from 'primereact/button';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,6 +37,12 @@ export default function App() {
   { name: "Sort by Followers", value: "followers" },
   { name: "Sort by Contributions", value: "contributions" },
 ];
+
+const handleShare = (user) => {
+  const tweetText = `Hey X, here are my GitHub stats:\n\nUsername: ${user.username}\n\n🏅\nFollowers Rank: #${user.followerRank}\nContribution Rank: #${user.contributionRank}\n\n🏆\nTotal Followers: ${user.followers}\nTotal Contribution: ${user.contributions}\n\nGo check yours at https://indogithubers.vercel.app`;
+  const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+  window.open(url, '_blank');
+};
 
 const [sortBy, setSortBy] = useState(filterOptions[0].value); 
 
@@ -158,7 +165,7 @@ const [sortBy, setSortBy] = useState(filterOptions[0].value);
             field="followers"
             header="Followers"
             sortable
-            style={{ width: "15%" }}
+            style={{ width: "10%" }}
             body={(rowData) =>
               formatNumberWithThousandsSeparator(rowData.followers)
             }
@@ -173,7 +180,7 @@ const [sortBy, setSortBy] = useState(filterOptions[0].value);
             field="contributions"
             header="Contributions"
             sortable
-            style={{ width: "15%" }}
+            style={{ width: "10%" }}
             body={(rowData) =>
               formatNumberWithThousandsSeparator(rowData.contributions)
             }
@@ -181,8 +188,14 @@ const [sortBy, setSortBy] = useState(filterOptions[0].value);
           <Column
             field="company"
             header="Company"
-            style={{ width: "30%" }}
+            style={{ width: "20%" }}
             body={(rowData) => rowData.company || "-"}
+          />
+          <Column
+            field="share"
+            header="Share"
+            style={{ width: "8%" }}
+            body={(rowData) => <Button icon="pi pi-share-alt" severity="secondary" onClick={() => handleShare(rowData)} />}
           />
         </DataTable>
       )}
