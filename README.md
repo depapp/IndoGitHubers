@@ -1,6 +1,6 @@
 # IndoGitHubers
 
-![IndoGitHubers](https://github.com/depapp/IndoGitHubers/assets/6134774/b0bf1a4b-ec6a-43a6-9a43-9c20931aa881)
+![IndoGitHubers](https://github.com/depapp/IndoGitHubers/assets/6134774/2cb8815c-c8b8-4721-87fd-b4ee94d886ee)
 
 ## :clipboard: description
 IndoGitHubers is an application that displays the GitHub rank of users in Indonesia. It provides detailed information about each user, including their number of followers and contributions.
