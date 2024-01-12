@@ -39,7 +39,7 @@ export default function App() {
 ];
 
 const handleShare = (user) => {
-  const tweetText = `Hey X, here are my GitHub stats:\n\nUsername: ${user.username}\n\n🏅\nFollowers Rank: #${user.followerRank}\nContribution Rank: #${user.contributionRank}\n\n🏆\nTotal Followers: ${user.followers}\nTotal Contribution: ${user.contributions}\n\nGo check yours at https://indogithubers.vercel.app`;
+  const tweetText = `Hey X, here are my GitHub stats:\n\nUsername: ${user.username}\n\n🏅\nFollowers Rank: #${user.followerRank}\nContribution Rank: #${user.contributionRank}\n\n🏆\nTotal Followers: ${user.followers}\nTotal Contribution: ${user.contributions}\n\nGo check yours at https://indogithubers.vercel.app #IndoGitHubers`;
   const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
   window.open(url, '_blank');
 };

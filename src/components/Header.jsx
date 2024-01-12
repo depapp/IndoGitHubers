@@ -58,6 +58,17 @@ export const Header = ({ data, lastUpdated }) => {
                 data-pr-position="right"
             ></i>
         </h3>
+        <h3>
+          Embed Your GitHub Rank using <a href="https://github.com/depapp/IndoGitHubers/blob/main/BADGE_USAGE.md" target="_blank">IndoGitHubers-badge</a>
+        </h3>
+        <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
+        <i
+          className="pi pi-github"
+          style={{ fontSize: '4rem', cursor: 'pointer' }}
+          onClick={() => window.open('https://github.com/depapp/IndoGitHubers', '_blank')}
+          title="hit me up on GitHub!"
+        ></i>
+        </div>
     </div>
 );
 };
