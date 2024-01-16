@@ -45,7 +45,7 @@ export const Header = ({ data, lastUpdated }) => {
             <i
                 className="custom-target-icon pi pi-info-circle"
                 style={{ fontSize: "1.25rem" }}
-                data-pr-tooltip={`your GitHub account needs to have at least ${data.MinimumFollowerCount} followers to be on the list.`}
+                data-pr-tooltip={`to be indexed by this app, your GitHub account must meet two requirements:\n\n1. have at least ${data.MinimumFollowerCount} followers.\n2. set 'Indonesia' as your profile location.`}
                 data-pr-position="right"
             ></i>
         </h2>
