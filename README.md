@@ -20,9 +20,11 @@ Check out the GitHub users who are standing out with the [IndoGitHubers-badge](h
 
 <summary>click me!</summary>
 
-* <a href="https://github.com/depapp" target="_blank">depapp</a>
+* [depapp](https://github.com/depapp)
 
-* <a href="https://github.com/sendomoka" target="_blank">sendomoka</a>
+* [sendomoka](https://github.com/sendomoka)
+
+* [taradevio](https://github.com/taradevio)
 
 </details>
 
