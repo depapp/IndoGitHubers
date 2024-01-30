@@ -14,6 +14,19 @@ The IndoGitHubers app fetches data from the GitHub API and displays it in a user
 - **Search**: Users can search for specific users using the search bar.
 
 
+## :framed_picture: showcase
+Check out the GitHub users who are standing out with the [IndoGitHubers-badge](https://github.com/depapp/IndoGitHubers/blob/main/BADGE_USAGE.md) on their public profiles:
+<details>
+
+<summary>click me!</summary>
+
+* <a href="https://github.com/depapp" target="_blank">depapp</a>
+
+* <a href="https://github.com/sendomoka" target="_blank">sendomoka</a>
+
+</details>
+
+
 ## :computer: how to setup
 To install the IndoGitHubers app, you can either clone the repository and run it locally, or you can visit the live version of the app hosted on Vercel at https://indogithubers.vercel.app/.
 
