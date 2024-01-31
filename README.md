@@ -26,6 +26,8 @@ Check out the GitHub users who are standing out with the [IndoGitHubers-badge](h
 
 * [taradevio](https://github.com/taradevio)
 
+* [chandrabezzo](https://github.com/chandrabezzo)
+
 </details>
 
 
