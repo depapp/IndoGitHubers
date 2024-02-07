@@ -3,16 +3,15 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Avatar } from "primereact/avatar";
 import { InputText } from "primereact/inputtext";
-import { Dropdown } from "primereact/dropdown"; 
+import { Dropdown } from "primereact/dropdown";
 import { Header } from "./components/Header";
 import { FilterMatchMode } from "primereact/api";
-import { Button } from 'primereact/button';
+import { Button } from "primereact/button";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState(null);
   const [data, setData] = useState([]);
-
 
   useEffect(() => {
     fetch(
@@ -33,18 +32,20 @@ export default function App() {
         setLastUpdated(lastUpdated);
       });
   }, []);
-  const filterOptions = [ 
-  { name: "Sort by Followers", value: "followers" },
-  { name: "Sort by Contributions", value: "contributions" },
-];
+  const filterOptions = [
+    { name: "Sort by Followers", value: "followers" },
+    { name: "Sort by Contributions", value: "contributions" },
+  ];
 
-const handleShare = (user) => {
-  const tweetText = `Hey X, here are my GitHub stats:\n\nUsername: ${user.username}\n\n🏅\nFollowers Rank: #${user.followerRank}\nContribution Rank: #${user.contributionRank}\n\n🏆\nTotal Followers: ${user.followers}\nTotal Contribution: ${user.contributions}\n\nGo check yours at https://indogithubers.vercel.app #IndoGitHubers`;
-  const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
-  window.open(url, '_blank');
-};
+  const handleShare = (user) => {
+    const tweetText = `Hey X, here are my GitHub stats:\n\nUsername: ${user.username}\n\n🏅\nFollowers Rank: #${user.followerRank}\nContribution Rank: #${user.contributionRank}\n\n🏆\nTotal Followers: ${user.followers}\nTotal Contribution: ${user.contributions}\n\nGo check yours at https://indogithubers.vercel.app #IndoGitHubers`;
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+      tweetText
+    )}`;
+    window.open(url, "_blank");
+  };
 
-const [sortBy, setSortBy] = useState(filterOptions[0].value); 
+  const [sortBy, setSortBy] = useState(filterOptions[0].value);
 
   const formatNumberWithThousandsSeparator = (number) => {
     return number.toLocaleString();
@@ -73,26 +74,25 @@ const [sortBy, setSortBy] = useState(filterOptions[0].value);
   };
 
   const sortData = (field) => {
-    const sortedData = [...data.users].sort((a, b) => b[field] - a[field]); 
+    const sortedData = [...data.users].sort((a, b) => b[field] - a[field]);
     setData({ ...data, users: sortedData });
-};
-
+  };
 
   const renderHeader = () => {
     return (
       <div className="flex justify-content-end">
-      <Dropdown 
-      value={sortBy}
-      options={filterOptions}
-      optionLabel="name"
-      onChange={(e) => {
-        setSortBy(e.value);
-        sortData(e.value);
-      }}
-      placeholder="Sort By"
-      style={{ marginRight: '10px' }}
-    />
-    
+        <Dropdown
+          value={sortBy}
+          options={filterOptions}
+          optionLabel="name"
+          onChange={(e) => {
+            setSortBy(e.value);
+            sortData(e.value);
+          }}
+          placeholder="Sort By"
+          style={{ marginRight: "10px" }}
+        />
+
         <span className="p-input-icon-left">
           <i className="pi pi-search" />
           <InputText
@@ -102,7 +102,7 @@ const [sortBy, setSortBy] = useState(filterOptions[0].value);
                 global: {
                   value: e.target.value,
                   matchMode: FilterMatchMode.CONTAINS,
-                  field: sortBy 
+                  field: sortBy,
                 },
               })
             }
@@ -195,7 +195,13 @@ const [sortBy, setSortBy] = useState(filterOptions[0].value);
             field="share"
             header="Share"
             style={{ width: "8%" }}
-            body={(rowData) => <Button icon="pi pi-share-alt" severity="secondary" onClick={() => handleShare(rowData)} />}
+            body={(rowData) => (
+              <Button
+                icon="pi pi-share-alt"
+                severity="secondary"
+                onClick={() => handleShare(rowData)}
+              />
+            )}
           />
         </DataTable>
       )}

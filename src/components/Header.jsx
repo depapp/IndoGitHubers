@@ -37,38 +37,46 @@ export const Header = ({ data, lastUpdated }) => {
 
   return (
     <div className="header-content" leading-3>
-        <Analytics />
-        <Tooltip target=".custom-target-icon" />
-        <h1>IndoGitHubers</h1>
-        <h2>
-            Check Your GitHub Rank{" "}
-            <i
-                className="custom-target-icon pi pi-info-circle"
-                style={{ fontSize: "1.25rem" }}
-                data-pr-tooltip={`to be indexed by this app, your GitHub account must meet two requirements:\n\n1. have at least ${data.MinimumFollowerCount} followers.\n2. set 'Indonesia' as your profile location.`}
-                data-pr-position="right"
-            ></i>
-        </h2>
-        <h3>
-            Last Updated: {formatLastUpdated()}{" "}
-            <i
-                className="custom-target-icon pi pi-info-circle"
-                style={{ fontSize: "1rem" }}
-                data-pr-tooltip={`this data is not updated in real time. the data will be updated daily.`}
-                data-pr-position="right"
-            ></i>
-        </h3>
-        <h3>
-          Embed Your GitHub Rank using <a href="https://github.com/depapp/IndoGitHubers/blob/main/BADGE_USAGE.md" target="_blank">IndoGitHubers-badge</a>
-        </h3>
-        <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
+      <Analytics />
+      <Tooltip target=".custom-target-icon" />
+      <h1>IndoGitHubers</h1>
+      <h2>
+        Check Your GitHub Rank{" "}
+        <i
+          className="custom-target-icon pi pi-info-circle"
+          style={{ fontSize: "1.25rem" }}
+          data-pr-tooltip={`to be indexed by this app, your GitHub account must meet two requirements:\n\n1. have at least ${data.MinimumFollowerCount} followers.\n2. set 'Indonesia' as your profile location.`}
+          data-pr-position="right"
+        ></i>
+      </h2>
+      <h3>
+        Last Updated: {formatLastUpdated()}{" "}
+        <i
+          className="custom-target-icon pi pi-info-circle"
+          style={{ fontSize: "1rem" }}
+          data-pr-tooltip={`this data is not updated in real time. the data will be updated daily.`}
+          data-pr-position="right"
+        ></i>
+      </h3>
+      <h3>
+        Embed Your GitHub Rank using{" "}
+        <a
+          href="https://github.com/depapp/IndoGitHubers/blob/main/BADGE_USAGE.md"
+          target="_blank"
+        >
+          IndoGitHubers-badge
+        </a>
+      </h3>
+      <div style={{ position: "absolute", top: "10px", right: "10px" }}>
         <i
           className="pi pi-github"
-          style={{ fontSize: '4rem', cursor: 'pointer' }}
-          onClick={() => window.open('https://github.com/depapp/IndoGitHubers', '_blank')}
+          style={{ fontSize: "4rem", cursor: "pointer" }}
+          onClick={() =>
+            window.open("https://github.com/depapp/IndoGitHubers", "_blank")
+          }
           title="hit me up on GitHub!"
         ></i>
-        </div>
+      </div>
     </div>
-);
+  );
 };
