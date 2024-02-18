@@ -28,6 +28,8 @@ Check out the GitHub users who are standing out with the [IndoGitHubers-badge](h
 
 * [chandrabezzo](https://github.com/chandrabezzo)
 
+* [crosbydoo](https://github.com/crosbydoo)
+
 </details>
 
 
