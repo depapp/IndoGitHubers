@@ -30,6 +30,12 @@ Check out the GitHub users who are standing out with the [IndoGitHubers-badge](h
 
 * [crosbydoo](https://github.com/crosbydoo)
 
+* [yaffalhakim1](https://github.com/yaffalhakim1)
+
+* [syofyanzuhad](https://github.com/syofyanzuhad)
+
+* [AsadSaleh](https://github.com/AsadSaleh)
+
 </details>
 
 
