@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "biomejs.biome",
+    "formulahendry.auto-rename-tag",
+    "mgmcdermott.vscode-language-babel",
+    "clinyong.vscode-css-modules",
+    "bradlc.vscode-tailwindcss"
+  ]
+}
