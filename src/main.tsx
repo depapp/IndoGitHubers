@@ -1,14 +1,16 @@
+// @ts-ignore
 import './index.css';
 
-import { createRoot } from 'react-dom/client';
 import { NuqsAdapter } from 'nuqs/adapters/react-router'
-import { BrowserRouter } from 'react-router-dom'
 import React from 'react';
-
-import { ThemeProvider } from './components/theme-provider';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom'
 import App from './App';
+import { ThemeProvider } from './components/theme-provider';
 
-createRoot(document.getElementById('root')).render(
+const domNode = document.getElementById('root') as HTMLElement;
+
+createRoot(domNode).render(
   <React.StrictMode>
     <ThemeProvider defaultTheme="dark" storageKey="__theme">
       <NuqsAdapter>
