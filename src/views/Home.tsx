@@ -1,3 +1,5 @@
+import { EmptyState } from '@/components/EmptyState';
+import { Spinner } from '@/components/Spinner';
 import { CardUsers } from '@/components/TableUser/card-users';
 import { columnsDesktop, columnsMobile } from '@/components/TableUser/column';
 import { DataTable } from '@/components/TableUser/data-table';
@@ -5,9 +7,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { } from '@/components/ui/collapsible';
 import DotPattern from '@/components/ui/dot-pattern';
 import ShimmerButton from '@/components/ui/shimmer-button';
-import { Skeleton } from '@/components/ui/skeleton';
 import { useLatestUpdate, useMostActiveUsers } from '@/lib/api';
-import { cn, range } from '@/lib/utils';
+import { cn, } from '@/lib/utils';
 import { useMediaQuery } from 'usehooks-ts';
 
 export const Home = () => {
@@ -15,30 +16,16 @@ export const Home = () => {
   const { data, isLoading, isError } = useMostActiveUsers();
   const { data: lastUpdatedData } = useLatestUpdate();
 
-  // TODO: Create proper loader skeleton
   if (isLoading)
     return (
-      <div className="container mx-auto p-4">
-        <div className="space-y-4">
-          {range(1, 10).map((i) => (
-            <div className="flex items-center space-x-4" key={i}>
-              <Skeleton className="h-12 w-12 rounded-full" />
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-[250px]" />
-                <Skeleton className="h-4 w-[200px]" />
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="relative py-16 max-w-4xl mx-auto flex flex-col justify-center items-center gap-8 text-center">
+        <Spinner />
       </div>
     );
 
-  // TODO: Handle error state
   if (isError)
     return (
-      <div>
-        <img src="/undraw_empty_re_opql.svg" alt="Empty data" loading="lazy" />
-      </div>
+      <EmptyState title='Failed to fetch data statistics, please try again later!' />
     );
 
   return (
