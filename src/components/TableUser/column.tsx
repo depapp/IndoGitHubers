@@ -3,6 +3,7 @@
 import type { User } from '@/lib/api';
 import { formatNumber } from '@/lib/utils';
 import type { ColumnDef } from '@tanstack/react-table';
+import { Link } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { DataTableColumnHeader } from './data-table-column-header';
 import { DataTableRowActions } from './data-table-row-actions';
@@ -47,14 +48,12 @@ export const columnsDesktop: ColumnDef<User>[] = [
     cell: ({ row }) => {
       const username = row.getValue('username') as string;
       return (
-        <a
-          href={`https://github.com/${username}`}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          to={`/u/${username}`}
           className="underline"
         >
           {username}
-        </a>
+        </Link>
       );
     },
   },
