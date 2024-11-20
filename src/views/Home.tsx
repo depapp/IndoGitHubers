@@ -47,13 +47,13 @@ export const Home = () => {
         <DataTable
           columns={columnsDesktop}
           data={data?.users || []}
-          updatedAt={new Date(lastUpdatedData[0].commit.committer.date)}
+          updatedAt={new Date(lastUpdatedData?.[0]?.commit?.committer?.date)}
         />
       ) : (
         <CardUsers
           columns={columnsMobile}
           data={data?.users || []}
-          updatedAt={new Date(lastUpdatedData[0].commit.committer.date)}
+          updatedAt={new Date(lastUpdatedData?.[0]?.commit?.committer?.date)}
         />
       )}
 
