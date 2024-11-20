@@ -1,7 +1,5 @@
 import type { Locator, Page } from '@playwright/test';
 
-const BASE_URL = 'https://indogithubers.vercel.app'
-
 export class AppPage {
   emptyState: Locator;
   lastUpdate: Locator;
@@ -16,7 +14,7 @@ export class AppPage {
   }
 
   async navigate() {
-    await this.page.goto(BASE_URL)
+    await this.page.goto('/')
   }
 
   async fillAndSearch(username: string) {
