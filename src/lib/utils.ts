@@ -57,6 +57,7 @@ export const makeInitial = (name: string) => {
     // biome-ignore lint/suspicious/noControlCharactersInRegex: based on https://stackoverflow.com/a/20856346
     .replace(/[^\x00-\x7F]/g, '')
     .trim()
+    // Split by either dot, space or dash chars
     .split(/\.|-|\s+/);
 
   if (allNames.length === 1) {
