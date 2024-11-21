@@ -110,6 +110,7 @@ export const Detail = () => {
           src={`https://ghchart.rshah.org/${username}`}
           alt="GitHub Contributions"
           loading="lazy"
+          className="h-auto w-full"
         />
       </div>
 
@@ -117,18 +118,21 @@ export const Detail = () => {
         <img
           src={`https://github-profile-trophy.vercel.app/?username=${username}&theme=algolia&margin-w=5&margin-h=5`}
           alt="Github Trophy"
+          className="h-auto w-full"
           loading="lazy"
         />
-        <div className="flex gap-4 items-start">
+        <div className="flex flex-col md:flex-row gap-4 items-start">
           <img
             src={`https://github-readme-streak-stats.herokuapp.com/?user=${username}&theme=algolia`}
             alt="Stat Streak"
             loading="lazy"
+            className="h-auto w-full md:w-[calc(50%-0.5rem)]"
           />
           <img
-            src={`https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=algolia&hide_border=true&count_private=true&line_height=27`}
+            src={`https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=algolia&count_private=true&line_height=27`}
             alt="Github Stats"
             loading="lazy"
+            className="h-auto w-full md:w-[calc(50%-0.5rem)]"
           />
         </div>
       </div>
