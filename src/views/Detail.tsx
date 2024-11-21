@@ -1,4 +1,5 @@
 import { EmptyState } from '@/components/EmptyState';
+import { GhCalendar } from '@/components/GhCalendar';
 import { Spinner } from '@/components/Spinner';
 import { DEFAULT_CLASSNAMES_RANK, renderRank } from '@/components/TableUser/column';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -47,7 +48,9 @@ export const Detail = () => {
         <div className="relative h-24 w-24 bg-transparent rounded-full flex items-center justify-center flex-col">
           <Avatar className="h-20 w-20 bg-primary-foreground z-[1]">
             <AvatarImage src={currentUser?.avatarUrl} />
-            <AvatarFallback>{makeInitial(currentUser?.name || username || '')}</AvatarFallback>
+            <AvatarFallback>
+              {makeInitial(currentUser?.name || username || '')}
+            </AvatarFallback>
           </Avatar>
           <span className="animate-ping absolute inline-flex h-14 w-14 rounded-full bg-sky-400 opacity-75" />
         </div>
@@ -113,16 +116,11 @@ export const Detail = () => {
         </Button>
       </div>
 
-      <div className="relative max-w-4xl mx-auto flex flex-col justify-center items-center gap-2">
-        <img
-          src={`https://ghchart.rshah.org/${username}`}
-          alt="GitHub Contributions"
-          loading="lazy"
-          className="h-auto w-full"
-        />
+      <div className="relative max-w-4xl mx-auto flex flex-col justify-center items-center gap-2 py-4">
+        <GhCalendar username={username || ''} />
       </div>
 
-      <div className="relative max-w-4xl mx-auto flex flex-col justify-center items-center gap-4">
+      <div className="relative max-w-4xl mx-auto flex flex-col justify-center items-center gap-4 py-4">
         <img
           src={`https://github-profile-trophy.vercel.app/?username=${username}&theme=algolia&margin-w=5&margin-h=5`}
           alt="Github Trophy"
