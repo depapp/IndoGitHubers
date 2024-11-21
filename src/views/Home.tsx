@@ -44,7 +44,7 @@ export const Home = () => {
         />
       )}
 
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto p-4">
         <h2 className="text-center scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
           Frequently Asked Questions
         </h2>
@@ -78,7 +78,7 @@ export const Home = () => {
         </Accordion>
       </div>
 
-      <div className="relative py-16 max-w-4xl mx-auto flex flex-col justify-center items-center gap-4">
+      <div className="relative py-16 max-w-4xl mx-auto flex flex-col justify-center items-center gap-8">
         <h2 className="text-center scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
           Embeed Your Stats!
         </h2>
@@ -97,7 +97,7 @@ export const Home = () => {
           >
             <ShimmerButton className="shadow-2xl">
               <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
-                Embeed now
+                Create badge
               </span>
             </ShimmerButton>
           </a>

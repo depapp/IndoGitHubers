@@ -19,7 +19,7 @@ import {
 import { ClockIcon } from 'lucide-react';
 import { Fragment, useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { renderRank } from './column';
+import { DEFAULT_CLASSNAMES_RANK, renderRank } from './column';
 import { DataTablePagination } from './data-table-pagination';
 import { DataTableRowActions } from './data-table-row-actions';
 import { DataTableToolbar } from './data-table-toolbar';
@@ -54,14 +54,15 @@ function renderRowUser({ row }: { row: Row<User> }) {
         <div className="flex flex-col gap-1 items-center">
           <span className="text-sm text-muted-foreground">Contributions</span>
           <div className="flex items-center gap-1">
-            {renderRank(user?.contributionRank)} •{' '}
+            {renderRank(user?.contributionRank, DEFAULT_CLASSNAMES_RANK)} •{' '}
             {formatNumber(user?.contributions)}
           </div>
         </div>
         <div className="flex flex-col gap-1 items-center">
           <span className="text-sm text-muted-foreground">Followers</span>
           <div className="flex items-center gap-1">
-            {renderRank(user?.followerRank)} • {formatNumber(user?.followers)}
+            {renderRank(user?.followerRank, DEFAULT_CLASSNAMES_RANK)} •{' '}
+            {formatNumber(user?.followers)}
           </div>
         </div>
       </div>
