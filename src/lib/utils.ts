@@ -59,10 +59,15 @@ export const makeInitial = (name: string) => {
     .trim()
     .split(/\.|-|\s+/);
 
+  if (allNames.length === 1) {
+    return allNames[0].substring(0, 2).toUpperCase();
+  }
+
   const initials = allNames.reduce((acc, curr, index) => {
     if (index === 0 || index === allNames.length - 1) {
       acc = `${acc}${curr.charAt(0).toUpperCase()}`;
     }
+
     return acc;
   }, '');
 
