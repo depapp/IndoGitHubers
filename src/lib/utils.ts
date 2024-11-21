@@ -50,3 +50,22 @@ export const formatLastUpdated = (date?: Date) => {
 
   return date.toLocaleDateString();
 };
+
+// Taken from: https://stackoverflow.com/a/66239174
+export const makeInitial = (name: string) => {
+  const allNames = name
+    // biome-ignore lint/suspicious/noControlCharactersInRegex: based on https://stackoverflow.com/a/20856346
+    .replace(/[^\x00-\x7F]/g, '')
+    .trim()
+    .split(/\.|-|\s+/);
+
+  const initials = allNames.reduce((acc, curr, index) => {
+    if (index === 0 || index === allNames.length - 1) {
+      acc = `${acc}${curr.charAt(0).toUpperCase()}`;
+    }
+    return acc;
+  }, '');
+
+  // Max is 3 chars
+  return initials.substring(0, 3);
+};

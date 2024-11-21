@@ -1,10 +1,10 @@
 'use client';
 
 import type { User } from '@/lib/api';
-import { cn, formatNumber } from '@/lib/utils';
+import { cn, formatNumber, makeInitial } from '@/lib/utils';
 import type { ColumnDef } from '@tanstack/react-table';
 import { Link } from 'react-router-dom';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage, } from '../ui/avatar';
 import { DataTableColumnHeader } from './data-table-column-header';
 import { DataTableRowActions } from './data-table-row-actions';
 
@@ -37,12 +37,15 @@ export const columnsDesktop: ColumnDef<User>[] = [
     cell: ({ row }) => {
       const avatarUrl = row.getValue('avatarUrl') as string;
       const username = row.getValue('username') as string;
+      const name = row.getValue('name') as string;
 
       return (
         <div className="">
           <Avatar>
             <AvatarImage src={avatarUrl} />
-            <AvatarFallback>{username}</AvatarFallback>
+            <AvatarFallback>
+              {makeInitial(name || username)}
+            </AvatarFallback>
           </Avatar>
         </div>
       );

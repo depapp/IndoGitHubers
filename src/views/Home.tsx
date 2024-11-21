@@ -52,26 +52,21 @@ export const Home = () => {
         <Accordion type="multiple">
           <AccordionItem value="faq-1">
             <AccordionTrigger>
-              How to be indexed in this project?
+              How to be included in this project?
             </AccordionTrigger>
             <AccordionContent>
               <ol className="list-decimal list-inside">
-                <li>Set "Indonesia" as your location.</li>
+                <li>Ensure your location is set to "Indonesia".</li>
                 <li>Have at least 22 followers.</li>
               </ol>
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="faq-2">
-            <AccordionTrigger>When the data will be updated?</AccordionTrigger>
+            <AccordionTrigger>How often is the data updated?</AccordionTrigger>
             <AccordionContent>
               <ul className="list-disc list-inside">
-                <li>
-                  The data is not updated in real time, expect some delay.
-                </li>
-                <li>
-                  The cronjob scheduler will run in the daily basis to update
-                  the data.
-                </li>
+                <li>Updates are not in real time; some delays may occur.</li>
+                <li>Data is refreshed daily through a scheduled cron job.</li>
               </ul>
             </AccordionContent>
           </AccordionItem>
