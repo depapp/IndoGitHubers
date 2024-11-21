@@ -1,25 +1,33 @@
 'use client';
 
 import type { User } from '@/lib/api';
-import { formatNumber } from '@/lib/utils';
+import { cn, formatNumber } from '@/lib/utils';
 import type { ColumnDef } from '@tanstack/react-table';
 import { Link } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { DataTableColumnHeader } from './data-table-column-header';
 import { DataTableRowActions } from './data-table-row-actions';
 
-export const renderRank = (rank: number) => {
+export const DEFAULT_CLASSNAMES_RANK = {
+  first: '',
+  second: '',
+  third: '',
+  other: '',
+};
+
+export const renderRank = (rank: number, classNames = DEFAULT_CLASSNAMES_RANK) => {
   if (rank === 1) {
-    return <p className="text-right text-3xl">🥇</p>;
+    return <p className={cn("text-right text-3xl", classNames?.first)}>🥇</p>;
   }
   if (rank === 2) {
-    return <p className="text-right text-3xl">🥈</p>;
+    return <p className={cn('text-right text-3xl', classNames?.second)}>🥈</p>;
   }
   if (rank === 3) {
-    return <p className="text-right text-3xl">🥉</p>;
+    return <p className={cn('text-right text-3xl', classNames?.third)}>🥉</p>;
   }
-  return <p className="text-right">#{formatNumber(rank)}</p>;
-}
+
+  return <p className={cn('text-right', classNames.other)}>#{formatNumber(rank)}</p>;
+};
 
 export const columnsDesktop: ColumnDef<User>[] = [
   {
@@ -71,7 +79,7 @@ export const columnsDesktop: ColumnDef<User>[] = [
     ),
     cell: ({ row }) => {
       const followerRank = row.getValue('followerRank') as number;
-      return renderRank(followerRank);
+      return renderRank(followerRank, DEFAULT_CLASSNAMES_RANK);
     },
   },
   {
@@ -92,7 +100,7 @@ export const columnsDesktop: ColumnDef<User>[] = [
     ),
     cell: ({ row }) => {
       const contributionRank = row.getValue('contributionRank') as number;
-      return renderRank(contributionRank);
+      return renderRank(contributionRank, DEFAULT_CLASSNAMES_RANK);
     },
   },
   {
