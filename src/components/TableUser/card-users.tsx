@@ -1,7 +1,7 @@
 'use client';
 
 import type { User } from '@/lib/api';
-import { formatLastUpdated, formatNumber } from '@/lib/utils';
+import { formatLastUpdated, formatNumber, makeInitial } from '@/lib/utils';
 import {
   type ColumnDef,
   type ColumnFiltersState,
@@ -38,7 +38,9 @@ function renderRowUser({ row }: { row: Row<User> }) {
         <div className="flex items-center gap-2">
           <Avatar>
             <AvatarImage src={user?.avatarUrl} />
-            <AvatarFallback>{user?.username}</AvatarFallback>
+            <AvatarFallback>
+              {makeInitial(user?.name || user?.username)}
+            </AvatarFallback>
           </Avatar>
           <div className="space-y-1">
             <p className="text-sm font-medium leading-none">{user?.name}</p>

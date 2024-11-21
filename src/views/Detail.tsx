@@ -4,7 +4,7 @@ import { DEFAULT_CLASSNAMES_RANK, renderRank } from '@/components/TableUser/colu
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { useMostActiveUsers } from '@/lib/api';
-import { formatNumber } from '@/lib/utils';
+import { formatNumber, makeInitial } from '@/lib/utils';
 import {
   ActivityIcon,
   ArrowLeftIcon,
@@ -47,7 +47,7 @@ export const Detail = () => {
         <div className="relative h-24 w-24 bg-transparent rounded-full flex items-center justify-center flex-col">
           <Avatar className="h-20 w-20 bg-primary-foreground z-[1]">
             <AvatarImage src={currentUser?.avatarUrl} />
-            <AvatarFallback>{username}</AvatarFallback>
+            <AvatarFallback>{makeInitial(currentUser?.name || username || '')}</AvatarFallback>
           </Avatar>
           <span className="animate-ping absolute inline-flex h-14 w-14 rounded-full bg-sky-400 opacity-75" />
         </div>
