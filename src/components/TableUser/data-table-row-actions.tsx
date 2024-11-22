@@ -4,6 +4,7 @@ import type { Row } from '@tanstack/react-table';
 import { ActivityIcon, ExternalLink, MoreHorizontal, Share2Icon, } from 'lucide-react';
 
 import type { User } from '@/lib/api';
+import { shareToSocial } from '@/lib/utils';
 import { Link } from 'react-router-dom';
 import { Button } from '../ui/button';
 import {
@@ -37,11 +38,7 @@ export function DataTableRowActions<TData>({
       <DropdownMenuContent align="end" className="w-[160px]">
         <DropdownMenuItem
           onClick={() => {
-            const tweetText = `Hey X, here are my GitHub stats:\n\nUsername: ${user.username}\n\n🏅\nFollowers Rank: #${user.followerRank}\nContribution Rank: #${user.contributionRank}\n\n🏆\nTotal Followers: ${user.followers}\nTotal Contribution: ${user.contributions}\n\nGo check yours at https://indogithubers.vercel.app/u/${user.username} #IndoGitHubers`;
-            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-              tweetText
-            )}`;
-            window.open(url, '_blank');
+            shareToSocial(user);
           }}
         >
           Share
