@@ -28,6 +28,7 @@ export function CopyButton({
         variant="outline"
         className="flex gap-2 items-center"
         type="button"
+        disabled={isCopied}
         onClick={() => {
           setIsCopied(true);
           copyTextToClipboard(`${text}`);
