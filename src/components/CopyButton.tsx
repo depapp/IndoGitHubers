@@ -38,7 +38,7 @@ export function CopyButton({
         }}
       >
         {isCopied ? (
-          <Check className="h-4 w-4 shrink-0" />
+          <Check className="h-4 w-4 shrink-0 text-green-500" />
         ) : (
           <Copy className="h-4 w-4 shrink-0" />
         )}
