@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import type { User } from './api';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -74,4 +75,13 @@ export const makeInitial = (name: string) => {
 
   // Max is 3 chars
   return initials.substring(0, 3);
+};
+
+export const shareToSocial = (user: User) => {
+  const tweetText = `Hey X, here are my GitHub stats:\n\nUsername: ${user.username}\n\n🏅\nFollowers Rank: #${user.followerRank}\nContribution Rank: #${user.contributionRank}\n\n🏆\nTotal Followers: ${user.followers}\nTotal Contribution: ${user.contributions}\n\nGo check yours at https://indogithubers.vercel.app/u/${user.username} #IndoGitHubers`;
+  const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+    tweetText
+  )}`;
+
+  window.open(url, '_blank');
 };

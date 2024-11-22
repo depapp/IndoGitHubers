@@ -5,11 +5,12 @@ import { DEFAULT_CLASSNAMES_RANK, renderRank } from '@/components/TableUser/colu
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { useMostActiveUsers } from '@/lib/api';
-import { formatNumber, makeInitial } from '@/lib/utils';
+import { formatNumber, makeInitial, shareToSocial } from '@/lib/utils';
 import {
   ActivityIcon,
   ArrowLeftIcon,
   ExternalLink,
+  GithubIcon,
   Share2Icon,
   UserCheck2Icon,
 } from 'lucide-react';
@@ -89,23 +90,27 @@ export const Detail = () => {
         </div>
       </div>
 
-      <div className="relative max-w-4xl mx-auto flex justify-center items-center gap-2">
+      <div className="relative max-w-4xl mx-auto flex flex-wrap justify-center items-center gap-2">
         <Button
           variant="outline"
-          size="sm"
+          size="icon"
           onClick={() => {
-            const tweetText = `Hey X, here are my GitHub stats:\n\nUsername: ${currentUser.username}\n\n🏅\nFollowers Rank: #${currentUser.followerRank}\nContribution Rank: #${currentUser.contributionRank}\n\n🏆\nTotal Followers: ${currentUser.followers}\nTotal Contribution: ${currentUser.contributions}\n\nGo check yours at https://indogithubers.vercel.app/u/${username} #IndoGitHubers`;
-            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-              tweetText
-            )}`;
-            window.open(url, '_blank');
+            shareToSocial(currentUser);
           }}
         >
-          Share Profile
           <Share2Icon />
         </Button>
-        {username ?
-          <Button asChild variant="outline" size="sm">
+        <Button asChild variant="outline" size="icon">
+          <a
+            href={`https://github.com/${username}`}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <GithubIcon />
+          </a>
+        </Button>
+        {username ? (
+          <Button asChild variant="outline">
             <a
               href={`https://my-open-source-contributions.vercel.app/${username}`}
               target="_blank"
@@ -114,18 +119,8 @@ export const Detail = () => {
               See Contributions
               <ExternalLink />
             </a>
-          </Button> 
-        : null}
-        <Button asChild variant="outline" size="sm">
-          <a
-            href={`https://github.com/${username}`}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Visit GitHub
-            <ExternalLink />
-          </a>
-        </Button>
+          </Button>
+        ) : null}
       </div>
 
       <div className="relative max-w-4xl mx-auto flex flex-col justify-center items-center gap-2 py-4">
