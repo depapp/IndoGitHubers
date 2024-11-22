@@ -78,12 +78,19 @@ export const makeInitial = (name: string) => {
 };
 
 export const shareToSocial = (user: User) => {
-  const tweetText = `Hey X, here are my GitHub stats:\n\nUsername: ${user.username}\n\n🏅\nFollowers Rank: #${user.followerRank}\nContribution Rank: #${user.contributionRank}\n\n🏆\nTotal Followers: ${user.followers}\nTotal Contribution: ${user.contributions}\n\nGo check yours at https://indogithubers.vercel.app/u/${user.username} #IndoGitHubers`;
-  const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-    tweetText
-  )}`;
-
-  window.open(url, '_blank');
+  const shareData = {
+    title: 'Check out my GitHub stats',
+    text: `Hey, checkout my GitHub stats:\n\nUsername: ${user.username}\n\n🏅\nFollowers Rank: #${user.followerRank}\nContribution Rank: #${user.contributionRank}\n\n🏆\nTotal Followers: ${user.followers}\nTotal Contribution: ${user.contributions}\n\nGo check yours at https://indogithubers.vercel.app/u/${user.username} #IndoGitHubers`,
+    url: `https://indogithubers.vercel.app/u/${user.username}`,
+  }
+  if (navigator.canShare(shareData)) {
+    return navigator.share(shareData);
+  } else {
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+      shareData.text
+    )}`;
+    window.open(url, '_blank');
+  }
 };
 
 export async function copyTextToClipboard(text: string) {
