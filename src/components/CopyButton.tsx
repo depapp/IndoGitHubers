@@ -29,12 +29,12 @@ export function CopyButton({
         className="flex gap-2 items-center"
         type="button"
         onClick={() => {
-          setIsCopied(true)
-          copyTextToClipboard(`${text}`)
+          setIsCopied(true);
+          copyTextToClipboard(`${text}`);
 
           setTimeout(() => {
-            setIsCopied(false)
-          }, 3000)
+            setIsCopied(false);
+          }, 3000);
         }}
       >
         {isCopied ? (
@@ -43,9 +43,9 @@ export function CopyButton({
           <Copy className="h-4 w-4 shrink-0" />
         )}
         {withLabel ? (
-          <>{isCopied ? <span>Copy</span> : <span>Copied</span>}</>
+          <>{isCopied ? <span>Copied</span> : <span>Copy</span>}</>
         ) : null}
       </Button>
     </div>
-  )
+  );
 }
