@@ -70,7 +70,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="grid gap-2">
+    <div className="grid gap-2 grid-cols-1">
       <div className="rounded-md border">
         <div className="p-4">
           <DataTableToolbar table={table} withTableViewOptions={true} />
