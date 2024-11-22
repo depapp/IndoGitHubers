@@ -104,6 +104,18 @@ export const Detail = () => {
           Share Profile
           <Share2Icon />
         </Button>
+        {username ?
+          <Button asChild variant="outline" size="sm">
+            <a
+              href={`https://my-open-source-contributions.vercel.app/${username}`}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              See Contributions
+              <ExternalLink />
+            </a>
+          </Button> 
+        : null}
         <Button asChild variant="outline" size="sm">
           <a
             href={`https://github.com/${username}`}
