@@ -23,6 +23,7 @@ import { DEFAULT_CLASSNAMES_RANK, renderRank } from './column';
 import { DataTablePagination } from './data-table-pagination';
 import { DataTableRowActions } from './data-table-row-actions';
 import { DataTableToolbar } from './data-table-toolbar';
+import { Link } from 'react-router-dom';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -44,9 +45,14 @@ function renderRowUser({ row }: { row: Row<User> }) {
           </Avatar>
           <div className="space-y-1">
             <p className="text-sm font-medium leading-none">{user?.name}</p>
-            <span className="text-sm text-muted-foreground">
-              @{user?.username}
-            </span>
+            <Link
+              to={`/u/${user?.username}`}
+              className="underline"
+            >
+              <span className="text-sm text-muted-foreground">
+                @{user?.username}
+              </span>
+            </Link>
           </div>
         </div>
         <DataTableRowActions row={row} />
