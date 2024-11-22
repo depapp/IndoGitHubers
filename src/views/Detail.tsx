@@ -1,9 +1,18 @@
+import { CopyButton } from '@/components/CopyButton';
 import { EmptyState } from '@/components/EmptyState';
 import { GhCalendar } from '@/components/GhCalendar';
 import { Spinner } from '@/components/Spinner';
 import { DEFAULT_CLASSNAMES_RANK, renderRank } from '@/components/TableUser/column';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { useMostActiveUsers } from '@/lib/api';
 import { formatNumber, makeInitial, shareToSocial } from '@/lib/utils';
 import {
@@ -11,14 +20,18 @@ import {
   ArrowLeftIcon,
   ExternalLink,
   GithubIcon,
+  InfoIcon,
   Share2Icon,
   UserCheck2Icon,
 } from 'lucide-react';
+import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 export const Detail = () => {
   const { data, isLoading, isError } = useMostActiveUsers();
   const { username } = useParams();
+
+  const [badgeType, setBadgeType] = useState<string>('markdown');
 
   if (isLoading)
     return (
@@ -147,6 +160,73 @@ export const Detail = () => {
             loading="lazy"
             className="h-auto w-full md:w-[calc(50%-0.5rem)]"
           />
+        </div>
+      </div>
+
+      <div className="relative py-16 max-w-4xl mx-auto flex flex-col justify-center items-center gap-8">
+        <h2 className="text-center scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+          Create your badge
+        </h2>
+
+        <div className="relative flex flex-col gap-4">
+          <img
+            src={`https://indogithubers-badge.vercel.app/badge?username=${username}`}
+            alt="Badge"
+            loading="lazy"
+          />
+
+          <div className="flex flex-col gap-2">
+            <div className="flex gap-2 items-center">
+              <Select
+                onValueChange={(newValue) => {
+                  setBadgeType(newValue);
+                }}
+                defaultValue={badgeType}
+              >
+                <SelectTrigger className="w-[100px]">
+                  <SelectValue placeholder="Select mode" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="markdown">Markdown</SelectItem>
+                  <SelectItem value="html">HTML</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <CopyButton
+              text={
+                badgeType === 'markdown'
+                  ? `![IndoGitHubers-badge](https://indogithubers-badge.vercel.app/badge?username=${username})`
+                  : ` <img src="https://indogithubers-badge.vercel.app/badge?username=${username}" alt="IndoGitHubers Badge">`
+              }
+              fullWidth
+              withInput={true}
+              withLabel
+            />
+          </div>
+
+          <Alert>
+            <InfoIcon className="h-4 w-4" />
+            <AlertTitle>Additional parameters</AlertTitle>
+            <AlertDescription className="mt-2">
+              <ul className="list-disc list-outside grid gap-1">
+                <li>
+                  <code className="bg-green-100 text-green-600 px-1 rounded font-mono">
+                    style
+                  </code>{' '}
+                  values that you can use are: "social", "plastic", "flat",
+                  "flat-square", "for-the-badge"
+                </li>
+                <li>
+                  <code className="bg-green-100 text-green-600 px-1 rounded font-mono">
+                    color
+                  </code>{' '}
+                  values that you can use, such as "red", "yellow", "00FF00",
+                  "D3EB30", etc
+                </li>
+              </ul>
+            </AlertDescription>
+          </Alert>
         </div>
       </div>
     </div>
