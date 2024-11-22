@@ -40,12 +40,12 @@ export const Layout = () => {
           <span>
             Since 2023, built with ☕️ by{' '}
             <a
-              href="https://github.com/depapp"
+              href="https://github.com/depapp/IndoGitHubers/graphs/contributors"
               target="_blank"
               rel="noopener noreferrer"
               className="underline"
             >
-              Depa
+              Us, The Contributors.
             </a>
           </span>
         </div>
