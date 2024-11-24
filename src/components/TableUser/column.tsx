@@ -4,7 +4,7 @@ import type { User } from '@/lib/api';
 import { cn, formatNumber, makeInitial } from '@/lib/utils';
 import type { ColumnDef } from '@tanstack/react-table';
 import { Link } from 'react-router-dom';
-import { Avatar, AvatarFallback, AvatarImage, } from '../ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { DataTableColumnHeader } from './data-table-column-header';
 import { DataTableRowActions } from './data-table-row-actions';
 
@@ -15,9 +15,12 @@ export const DEFAULT_CLASSNAMES_RANK = {
   other: '',
 };
 
-export const renderRank = (rank: number, classNames = DEFAULT_CLASSNAMES_RANK) => {
+export const renderRank = (
+  rank: number,
+  classNames = DEFAULT_CLASSNAMES_RANK
+) => {
   if (rank === 1) {
-    return <p className={cn("text-right text-3xl", classNames?.first)}>🥇</p>;
+    return <p className={cn('text-right text-3xl', classNames?.first)}>🥇</p>;
   }
   if (rank === 2) {
     return <p className={cn('text-right text-3xl', classNames?.second)}>🥈</p>;
@@ -26,7 +29,9 @@ export const renderRank = (rank: number, classNames = DEFAULT_CLASSNAMES_RANK) =
     return <p className={cn('text-right text-3xl', classNames?.third)}>🥉</p>;
   }
 
-  return <p className={cn('text-right', classNames.other)}>#{formatNumber(rank)}</p>;
+  return (
+    <p className={cn('text-right', classNames.other)}>#{formatNumber(rank)}</p>
+  );
 };
 
 export const columnsDesktop: ColumnDef<User>[] = [
@@ -40,14 +45,12 @@ export const columnsDesktop: ColumnDef<User>[] = [
       const name = row.getValue('name') as string;
 
       return (
-        <div className="">
+        <Link to={`/u/${username}`}>
           <Avatar>
             <AvatarImage src={avatarUrl} />
-            <AvatarFallback>
-              {makeInitial(name || username)}
-            </AvatarFallback>
+            <AvatarFallback>{makeInitial(name || username)}</AvatarFallback>
           </Avatar>
-        </div>
+        </Link>
       );
     },
   },
@@ -59,10 +62,7 @@ export const columnsDesktop: ColumnDef<User>[] = [
     cell: ({ row }) => {
       const username = row.getValue('username') as string;
       return (
-        <Link
-          to={`/u/${username}`}
-          className="underline"
-        >
+        <Link to={`/u/${username}`} className="underline">
           {username}
         </Link>
       );
@@ -125,7 +125,6 @@ export const columnsDesktop: ColumnDef<User>[] = [
     cell: ({ row }) => <DataTableRowActions row={row} />,
   },
 ];
-
 
 export const columnsMobile: ColumnDef<User>[] = [
   {
