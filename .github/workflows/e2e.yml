@@ -9,9 +9,6 @@ jobs:
   smoke-test:
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    permissions:
-      pages: write
-      id-token: write
 
     steps:
       - name: Checkout repository
@@ -42,8 +39,20 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
+  deploy_report:
+    needs: smoke-test
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
         id: deployment
+        uses: actions/deploy-pages@v4
         with:
           artifact_name: 'playwright-report'
