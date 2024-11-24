@@ -32,6 +32,7 @@ export const Detail = () => {
   const { username } = useParams();
 
   const [badgeType, setBadgeType] = useState<string>('markdown');
+  const [styleType, setStyleType] = useState<string>('flat');
 
   if (isLoading)
     return (
@@ -163,15 +164,15 @@ export const Detail = () => {
         </div>
       </div>
 
-      <div className="relative py-16 max-w-4xl mx-auto flex flex-col justify-center items-center gap-8">
+      <div className="relative max-w-4xl mx-auto flex flex-col justify-center items-center gap-8">
         <h2 className="text-center scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
           Create your badge
         </h2>
 
         <div className="relative flex flex-col gap-4">
           <img
-            src={`https://indogithubers-badge.vercel.app/badge?username=${username}`}
-            alt="Badge"
+            src={`https://indogithubers-badge.vercel.app/badge?username=${username}&style=${styleType}`}
+            alt="Preview Badge"
             loading="lazy"
           />
 
@@ -191,13 +192,30 @@ export const Detail = () => {
                   <SelectItem value="html">HTML</SelectItem>
                 </SelectContent>
               </Select>
+              <Select
+                onValueChange={(newValue) => {
+                  setStyleType(newValue);
+                }}
+                defaultValue={styleType}
+              >
+                <SelectTrigger className="w-[100px]">
+                  <SelectValue placeholder="Select style" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="flat">Flat</SelectItem>
+                  <SelectItem value="flat-square">Flat Square</SelectItem>
+                  <SelectItem value="for-the-badge">For The Badge</SelectItem>
+                  <SelectItem value="social">Social</SelectItem>
+                  <SelectItem value="plastic">Plastic</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
             <CopyButton
               text={
                 badgeType === 'markdown'
-                  ? `![IndoGitHubers-badge](https://indogithubers-badge.vercel.app/badge?username=${username})`
-                  : ` <img src="https://indogithubers-badge.vercel.app/badge?username=${username}" alt="IndoGitHubers Badge">`
+                  ? `![IndoGitHubers-badge](https://indogithubers-badge.vercel.app/badge?username=${username}&style=${styleType})`
+                  : ` <img src="https://indogithubers-badge.vercel.app/badge?username=${username}&style=${styleType}" alt="IndoGitHubers Badge">`
               }
               fullWidth
               withInput={true}

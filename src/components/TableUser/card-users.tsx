@@ -18,12 +18,12 @@ import {
 } from '@tanstack/react-table';
 import { ClockIcon } from 'lucide-react';
 import { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { DEFAULT_CLASSNAMES_RANK, renderRank } from './column';
 import { DataTablePagination } from './data-table-pagination';
 import { DataTableRowActions } from './data-table-row-actions';
 import { DataTableToolbar } from './data-table-toolbar';
-import { Link } from 'react-router-dom';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -37,21 +37,26 @@ function renderRowUser({ row }: { row: Row<User> }) {
     <div className="w-full px-4 py-2 rounded gap-4 grid border-b">
       <div className="flex justify-between">
         <div className="flex items-center gap-2">
-          <Avatar>
-            <AvatarImage src={user?.avatarUrl} />
-            <AvatarFallback>
-              {makeInitial(user?.name || user?.username)}
-            </AvatarFallback>
-          </Avatar>
-          <div className="space-y-1">
-            <p className="text-sm font-medium leading-none">{user?.name}</p>
+          <Link to={`/u/${user?.username}`}>
+            <Avatar>
+              <AvatarImage src={user?.avatarUrl} />
+              <AvatarFallback>
+                {makeInitial(user?.name || user?.username)}
+              </AvatarFallback>
+            </Avatar>
+          </Link>
+          <div className="flex flex-col gap-1">
             <Link
               to={`/u/${user?.username}`}
-              className="underline"
+              className="text-sm font-medium leading-none"
             >
-              <span className="text-sm text-muted-foreground">
-                @{user?.username}
-              </span>
+              {user?.name}
+            </Link>
+            <Link
+              to={`/u/${user?.username}`}
+              className="text-sm text-muted-foreground underline"
+            >
+              @{user?.username}
             </Link>
           </div>
         </div>
