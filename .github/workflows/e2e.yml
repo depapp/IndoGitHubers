@@ -8,6 +8,8 @@ on:
 jobs:
   smoke-test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     timeout-minutes: 60
 
     steps:
