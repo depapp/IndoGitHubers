@@ -1,6 +1,6 @@
 # IndoGitHubers
 
-[![E2E](https://github.com/depapp/IndoGitHubers/actions/workflows/e2e.yml/badge.svg)](https://github.com/depapp/IndoGitHubers/actions/workflows/e2e.yml)
+[![E2E](https://github.com/depapp/IndoGitHubers/actions/workflows/e2e.yml/badge.svg)](https://github.com/depapp/IndoGitHubers/actions/workflows/e2e.yml) [![Playwight Report](https://img.shields.io/badge/Playwright%20Report-222222?logo=github-pages&logoColor=white)](https://depapp.github.io/IndoGitHubers/)
 
 Live: [www.indogithubers.com](https://www.indogithubers.com/)
 
