@@ -9,14 +9,23 @@ export default defineConfig({
   },
   plugins: [react(), 
     VitePWA({
-      srcDir: './src/lib',
-      filename: 'sw.js',
-      strategies: 'injectManifest',
-      injectManifest: {
-        swSrc: './src/lib/sw.ts',
-      },
-      devOptions: {
-        enabled: true,
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/avatars\.githubusercontent\.com\/.*/i,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'gh-avatar-cache',
+              expiration: {
+                purgeOnQuotaError: true,
+                maxAgeSeconds: 24 * 60 * 60, // 1 day
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              }
+            }
+          }
+        ]
       }
     })
   ],
