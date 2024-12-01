@@ -18,7 +18,7 @@ export default defineConfig({
               cacheName: 'gh-avatar-cache',
               expiration: {
                 purgeOnQuotaError: true,
-                maxAgeSeconds: 24 * 60 * 60, // 1 day
+                maxAgeSeconds: 7 * 24 * 60 * 60, // 7 days
               },
               cacheableResponse: {
                 statuses: [0, 200],
