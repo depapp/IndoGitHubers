@@ -23,6 +23,8 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
+  snapshotPathTemplate:
+    '{testDir}/__screenshots__/{projectName}/{testFilePath}/{arg}{ext}',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -35,8 +37,17 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
+      name: 'desktop',
       use: { ...devices['Desktop Chrome'] },
+      /**
+       * TODO:
+       * How to run using this desktop device setup,
+       * but only for the test that contains @desktop annotations?
+       *
+       * Maybe using grep, but is it generating different report file for each run?
+       * We want to keep using single report file
+       */
+      testMatch: /.*(desktop|all).spec.ts/,
     },
 
     // {
@@ -50,10 +61,16 @@ export default defineConfig({
     // },
 
     /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
+    {
+      name: 'mobile',
+      use: { ...devices['Pixel 5'] },
+      /**
+       * TODO:
+       * How to run using this mobile device setup,
+       * but only for the test that contains @mobile annotations?
+       */
+      testMatch: /.*(mobile|all).spec.ts/,
+    },
     // {
     //   name: 'Mobile Safari',
     //   use: { ...devices['iPhone 12'] },
