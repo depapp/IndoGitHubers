@@ -32,7 +32,7 @@ import { DataTableToolbar } from './data-table-toolbar';
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  updatedAt?: Date
+  updatedAt?: Date;
 }
 
 export function DataTable<TData, TValue>({
@@ -73,7 +73,11 @@ export function DataTable<TData, TValue>({
     <div className="grid gap-2 grid-cols-1">
       <div className="rounded-md border">
         <div className="p-4">
-          <DataTableToolbar table={table} withTableViewOptions={true} />
+          <DataTableToolbar
+            table={table}
+            withTableViewOptions={true}
+            withSortOptions={false}
+          />
         </div>
         <Table>
           <TableHeader>
