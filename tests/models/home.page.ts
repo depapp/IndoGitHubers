@@ -1,6 +1,6 @@
 import type { Locator, Page } from '@playwright/test';
 
-export class AppPage {
+export class HomePage {
   emptyState: Locator;
   lastUpdate: Locator;
   faqHeading: Locator;

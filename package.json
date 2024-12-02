@@ -14,7 +14,13 @@
     "lint": "biome lint --write",
     "lint:unsafe": "biome lint --write --unsafe",
     "preview": "vite preview",
+    "test:setup": "pnpm exec playwright install --with-deps",
     "test:e2e": "playwright test",
+    "test:e2e:on-docker": "docker run -it --rm --ipc=host --network host -v $(pwd):/work/ -w /work/ mazipan/playwright:1.49.0 /bin/bash",
+    "test:e2e:visual": "playwright test --grep @visual --update-snapshots",
+    "test:e2e:smoke": "playwright test --grep @smoke",
+    "test:e2e:desktop": "playwright test --grep @desktop",
+    "test:e2e:mobile": "playwright test --grep @mobile",
     "test:e2e:report": "playwright show-report"
   },
   "dependencies": {
@@ -61,7 +67,7 @@
   },
   "packageManager": "pnpm@^9.12.2",
   "engines": {
-    "node": "20.x",
+    "node": "^20.x",
     "pnpm": "^9.12.2"
   }
 }
