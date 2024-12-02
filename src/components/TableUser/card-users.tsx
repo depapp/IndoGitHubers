@@ -121,7 +121,11 @@ export function CardUsers<TData, TValue>({
     <div className="grid gap-2">
       <div className="rounded-md border">
         <div className="p-4">
-          <DataTableToolbar table={table} withTableViewOptions={false} />
+          <DataTableToolbar
+            table={table}
+            withTableViewOptions={false}
+            withSortOptions={true}
+          />
         </div>
         <div className="grid gap-2">
           {table.getRowModel().rows?.length ? (
