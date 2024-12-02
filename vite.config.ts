@@ -7,8 +7,44 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  plugins: [react(), 
+  plugins: [
+    react(),
     VitePWA({
+      manifest: {
+        name: 'IndoGitHubers',
+        short_name: 'IGH',
+        description:
+          'Web app that displays the GitHub rank of users in Indonesia',
+        theme_color: '#ffffff',
+        display: 'standalone',
+        start_url: '/?source=pwa',
+        icons: [
+          {
+            src: 'favicon-96.png',
+            sizes: '96x96',
+            type: 'image/png',
+            purpose: 'any',
+          },
+          {
+            src: 'favicon-128.png',
+            sizes: '128x128',
+            type: 'image/png',
+            purpose: 'any',
+          },
+          {
+            src: 'favicon-192.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'any',
+          },
+          {
+            src: 'favicon-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any',
+          },
+        ],
+      },
       workbox: {
         runtimeCaching: [
           {
@@ -22,12 +58,12 @@ export default defineConfig({
               },
               cacheableResponse: {
                 statuses: [0, 200],
-              }
-            }
-          }
-        ]
-      }
-    })
+              },
+            },
+          },
+        ],
+      },
+    }),
   ],
   resolve: {
     alias: {

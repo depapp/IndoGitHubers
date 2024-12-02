@@ -70,6 +70,20 @@ export const Home = () => {
               </ul>
             </AccordionContent>
           </AccordionItem>
+          <AccordionItem value="faq-3">
+            <AccordionTrigger>
+              Why my avatar doesn't sync with my GitHub?
+            </AccordionTrigger>
+            <AccordionContent>
+              <p>
+                We are using client side cache to reduce the unnecessary request
+                for the same avatar URL. By having a cache, you may face a
+                different visual when you updating the avatar in GitHub. The
+                cache will be refreshed after 7 days, so most likely you will
+                get the new avatar in 7 days.
+              </p>
+            </AccordionContent>
+          </AccordionItem>
         </Accordion>
       </div>
 

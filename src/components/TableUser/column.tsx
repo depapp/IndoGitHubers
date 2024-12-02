@@ -56,6 +56,7 @@ export const columnsDesktop: ColumnDef<User>[] = [
   },
   {
     accessorKey: 'username',
+    enableHiding: false,
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Username" />
     ),

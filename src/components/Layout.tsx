@@ -2,7 +2,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { GithubIcon } from "lucide-react";
 import { Link, Outlet } from "react-router-dom"
 import { ModeToggle } from "./mode-toggle";
-import { Avatar, AvatarFallback } from "./ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 
 export const Layout = () => {
@@ -12,6 +12,7 @@ export const Layout = () => {
         <div className="p-4 container mx-auto flex justify-between items-center">
           <Link to="/" className="flex gap-2 items-center">
             <Avatar>
+              <AvatarImage src="/favicon-96.png" />
               <AvatarFallback>IGH</AvatarFallback>
             </Avatar>
             <h2 className="font-extrabold text-2xl tracking-tight">
