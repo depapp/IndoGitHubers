@@ -5,8 +5,10 @@ test.describe('Homepage', () => {
   let homePage: HomePage;
 
   test.beforeEach(async ({ page }) => {
-    homePage = new HomePage(page);
-    await homePage.navigate();
+    await test.step('Given navigate to the homepage', async () => {
+      homePage = new HomePage(page);
+      await homePage.navigate();
+    });
   });
 
   test(
@@ -35,25 +37,24 @@ test.describe('Homepage', () => {
       tag: ['@smoke', '@desktop', '@mobile'],
     },
     async () => {
-      await test.step('Given valid keyword', async () => {
+      await test.step('When user search with a valid keyword', async () => {
         await homePage.fillAndSearch('depapp');
       });
 
-      await test.step('should show expected result', async () => {
+      await test.step('Then table should show expected result', async () => {
         await expect(homePage.getUsername('depapp')).toBeVisible();
         await expect(homePage.emptyState).not.toBeVisible();
       });
 
-      await test.step('Given non existance keyword', async () => {
+      await test.step('When user search with non existance keyword', async () => {
         await homePage.fillAndSearch('non-existing-username');
       });
 
-      await test.step('should show the empty state', async () => {
+      await test.step('Then it should show the empty state', async () => {
         await expect(homePage.emptyState).toBeVisible();
       });
     }
   );
-
 
   /**
    * Sample test case that only run on certain project
@@ -69,7 +70,7 @@ test.describe('Homepage', () => {
 
       await test.step('When user click toggle column button', async () => {
         await expect(homePage.toggleColumnVisibilityBtn).toBeVisible();
-        await homePage.toggleColumnVisibilityBtn.click()
+        await homePage.toggleColumnVisibilityBtn.click();
       });
 
       await test.step('And perform toggle hide column "Name"', async () => {
