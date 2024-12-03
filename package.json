@@ -14,7 +14,11 @@
     "lint": "biome lint --write",
     "lint:unsafe": "biome lint --write --unsafe",
     "preview": "vite preview",
+    "test:setup": "pnpm exec playwright install --with-deps",
     "test:e2e": "playwright test",
+    "test:e2e:smoke": "playwright test --grep @smoke",
+    "test:e2e:desktop": "playwright test --project='Desktop Chrome'",
+    "test:e2e:mobile": "playwright test --project='Mobile Chrome'",
     "test:e2e:report": "playwright show-report"
   },
   "dependencies": {
@@ -61,7 +65,7 @@
   },
   "packageManager": "pnpm@^9.12.2",
   "engines": {
-    "node": "20.x",
+    "node": "^20.x",
     "pnpm": "^9.12.2"
   }
 }

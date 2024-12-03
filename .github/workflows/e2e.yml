@@ -30,7 +30,7 @@ jobs:
         run: pnpm install
 
       - name: Install headless browser
-        run: pnpm exec playwright install --with-deps
+        run: pnpm run test:setup
 
       - name: Smoke test
         run: pnpm run test:e2e
