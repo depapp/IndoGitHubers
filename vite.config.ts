@@ -49,7 +49,7 @@ export default defineConfig({
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/avatars\.githubusercontent\.com\/.*/i,
-            handler: 'StaleWhileRevalidate',
+            handler: 'CacheFirst',
             options: {
               cacheName: 'gh-avatar-cache',
               expiration: {
