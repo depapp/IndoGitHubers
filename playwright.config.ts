@@ -37,17 +37,8 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'desktop',
+      name: 'Desktop Chrome',
       use: { ...devices['Desktop Chrome'] },
-      /**
-       * TODO:
-       * How to run using this desktop device setup,
-       * but only for the test that contains @desktop annotations?
-       *
-       * Maybe using grep, but is it generating different report file for each run?
-       * We want to keep using single report file
-       */
-      testMatch: /.*(desktop|all).spec.ts/,
     },
 
     // {
@@ -62,14 +53,8 @@ export default defineConfig({
 
     /* Test against mobile viewports. */
     {
-      name: 'mobile',
+      name: 'Mobile Chrome',
       use: { ...devices['Pixel 5'] },
-      /**
-       * TODO:
-       * How to run using this mobile device setup,
-       * but only for the test that contains @mobile annotations?
-       */
-      testMatch: /.*(mobile|all).spec.ts/,
     },
     // {
     //   name: 'Mobile Safari',

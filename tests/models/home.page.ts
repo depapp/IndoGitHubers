@@ -1,10 +1,12 @@
-import { expect, type Locator, type Page } from '@playwright/test';
+import { type Locator, type Page, expect } from '@playwright/test';
 
 export class HomePage {
   emptyState: Locator;
   lastUpdate: Locator;
   faqHeading: Locator;
   searchInput: Locator;
+  toggleColumnVisibilityBtn: Locator;
+  columnNameCheckbox: Locator;
 
   constructor(private readonly page: Page) {
     this.searchInput = page.getByPlaceholder(/search username/i);
@@ -13,6 +15,12 @@ export class HomePage {
       name: /frequently asked questions/i,
     });
     this.emptyState = page.getByText(/no results/i);
+    this.toggleColumnVisibilityBtn = page.getByRole('button', {
+      name: /view/i,
+    });
+    this.columnNameCheckbox = page.getByRole('menuitemcheckbox', {
+      name: /name/i,
+    });
   }
 
   async navigate() {
@@ -25,6 +33,10 @@ export class HomePage {
 
   getUsername(username: string) {
     return this.page.getByRole('link', { name: username });
+  }
+
+  getName(name: string) {
+    return this.page.getByText(name);
   }
 
   async assertContentInRowIsVisible() {

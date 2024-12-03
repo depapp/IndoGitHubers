@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { HomePage } from './models/home.page';
 
-test.describe('Homepage - Desktop', () => {
+test.describe('Homepage', () => {
   let homePage: HomePage;
 
   test.beforeEach(async ({ page }) => {
@@ -12,7 +12,7 @@ test.describe('Homepage - Desktop', () => {
   test(
     'should contains expected elements',
     {
-      tag: ['@smoke', '@desktop'],
+      tag: ['@smoke', '@desktop', '@mobile'],
     },
     async () => {
       await test.step('should has data in the row', async () => {
@@ -32,7 +32,7 @@ test.describe('Homepage - Desktop', () => {
   test(
     'should validate the search function',
     {
-      tag: ['@smoke', '@desktop'],
+      tag: ['@smoke', '@desktop', '@mobile'],
     },
     async () => {
       await test.step('Given valid keyword', async () => {
@@ -50,6 +50,39 @@ test.describe('Homepage - Desktop', () => {
 
       await test.step('should show the empty state', async () => {
         await expect(homePage.emptyState).toBeVisible();
+      });
+    }
+  );
+
+
+  /**
+   * Sample test case that only run on certain project
+   * Use "test.skip" and accept "isMobile" to determine
+   */
+  test(
+    'should toggle column visibility',
+    {
+      tag: ['@smoke', '@desktop'],
+    },
+    async ({ isMobile }) => {
+      test.skip(isMobile, '// NOTE: TEST CASE FOR DESKTOP ONLY');
+
+      await test.step('should has toggle column button', async () => {
+        await expect(homePage.toggleColumnVisibilityBtn).toBeVisible();
+      });
+
+      await test.step('When user click toggle column button', async () => {
+        await homePage.toggleColumnVisibilityBtn.click()
+      });
+
+      await test.step('Then toggle hide "Name" column', async () => {
+        await expect(homePage.columnNameCheckbox).toBeVisible();
+        await homePage.columnNameCheckbox.click();
+        await expect(homePage.columnNameCheckbox).not.toBeVisible();
+      });
+
+      await test.step('column "Name" should become invisible', async () => {
+        await expect(homePage.getName('Sandhika Galih')).not.toBeVisible();
       });
     }
   );
