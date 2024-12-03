@@ -67,21 +67,18 @@ test.describe('Homepage', () => {
     async ({ isMobile }) => {
       test.skip(isMobile, '// NOTE: TEST CASE FOR DESKTOP ONLY');
 
-      await test.step('should has toggle column button', async () => {
-        await expect(homePage.toggleColumnVisibilityBtn).toBeVisible();
-      });
-
       await test.step('When user click toggle column button', async () => {
+        await expect(homePage.toggleColumnVisibilityBtn).toBeVisible();
         await homePage.toggleColumnVisibilityBtn.click()
       });
 
-      await test.step('Then toggle hide "Name" column', async () => {
+      await test.step('And perform toggle hide column "Name"', async () => {
         await expect(homePage.columnNameCheckbox).toBeVisible();
         await homePage.columnNameCheckbox.click();
         await expect(homePage.columnNameCheckbox).not.toBeVisible();
       });
 
-      await test.step('column "Name" should become invisible', async () => {
+      await test.step('Then column "Name" should become invisible', async () => {
         await expect(homePage.getName('Sandhika Galih')).not.toBeVisible();
       });
     }
