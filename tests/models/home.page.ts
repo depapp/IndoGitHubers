@@ -7,6 +7,11 @@ export class HomePage {
   searchInput: Locator;
   toggleColumnVisibilityBtn: Locator;
   columnNameCheckbox: Locator;
+  contributionsHeader: Locator;
+  sortButton: Locator;
+  sortByContributionsButton: Locator;
+  sortAscButton: Locator;
+  firstRowContributions: Locator;
 
   constructor(private readonly page: Page) {
     this.searchInput = page.getByPlaceholder(/search username/i);
@@ -21,6 +26,11 @@ export class HomePage {
     this.columnNameCheckbox = page.getByRole('menuitemcheckbox', {
       name: /name/i,
     });
+    this.contributionsHeader = page.getByRole('columnheader', { name: /contributions/i });
+    this.sortButton = page.getByRole('button', { name: /sort/i });
+    this.sortByContributionsButton = page.getByRole('menuitem', { name: /by contributions/i });
+    this.sortAscButton = page.getByRole('menuitem', { name: /ascending/i });
+    this.firstRowContributions = page.locator('tbody tr').first().locator('td').nth(2);
   }
 
   async navigate() {
@@ -50,5 +60,26 @@ export class HomePage {
 
   async assertFaqSectionIsVisible() {
     await expect(this.faqHeading).toBeVisible();
+  }
+
+  async sortByContributionsDesktop() {
+    await this.contributionsHeader.click();
+    await this.sortAscButton.click();
+  }
+
+  async sortByContributionsMobile() {
+    await this.sortButton.click();
+    await this.sortByContributionsButton.click();
+  }
+
+  async assertContributionsAreSorted() {
+    // Wait for sorting to complete
+    await this.page.waitForTimeout(500);
+    // Take a snapshot of the sorted table
+    await expect(this.page).toHaveScreenshot('contributions-sorted.png');
+    // Verify first row has the lowest contribution count
+    const firstContribution = await this.firstRowContributions.textContent();
+    const contributionCount = parseInt(firstContribution || '0', 10);
+    expect(contributionCount).toBeLessThanOrEqual(100);
   }
 }

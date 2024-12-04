@@ -92,4 +92,65 @@ test.describe('Homepage', () => {
       });
     }
   );
+
+  test(
+    'should sort by contributions on desktop',
+    {
+      tag: ['@smoke', '@desktop'],
+    },
+    async ({ isMobile, page }) => {
+      test.skip(isMobile, '// NOTE: TEST CASE FOR DESKTOP ONLY');
+
+      await test.step('Given navigate to homepage', async () => {
+        await homePage.navigate();
+      });
+
+      await test.step('Should show initial data', async () => {
+        await homePage.assertContentInRowIsVisible();
+        await expect(page).toHaveScreenshot('initial-data.png');
+      });
+
+      await test.step('When user click header "Contributions"', async () => {
+        await homePage.contributionsHeader.click();
+      });
+
+      await test.step('And select sort direction Asc', async () => {
+        await homePage.sortAscButton.click();
+      });
+
+      await test.step('Then data row should sort by contributions', async () => {
+        await homePage.assertContributionsAreSorted();
+      });
+    }
+  );
+
+  test(
+    'should sort by contributions on mobile',
+    {
+      tag: ['@smoke', '@mobile'],
+    },
+    async ({ isMobile }) => {
+      test.skip(!isMobile, '// NOTE: TEST CASE FOR MOBILE ONLY');
+
+      await test.step('Given navigate to homepage', async () => {
+        await homePage.navigate();
+      });
+
+      await test.step('Should show initial data', async () => {
+        await homePage.assertContentInRowIsVisible();
+      });
+
+      await test.step('When user click "Sort" button', async () => {
+        await homePage.sortButton.click();
+      });
+
+      await test.step('And select sort "By Contributions"', async () => {
+        await homePage.sortByContributionsButton.click();
+      });
+
+      await test.step('Then data row should sort by contributions', async () => {
+        await homePage.assertContributionsAreSorted();
+      });
+    }
+  );
 });
