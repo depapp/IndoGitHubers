@@ -16,7 +16,7 @@ test.describe('Homepage', () => {
     {
       tag: ['@smoke', '@desktop', '@mobile'],
     },
-    async () => {
+    async ({ page }) => {
       await test.step('should has data in the row', async () => {
         await homePage.assertContentInRowIsVisible();
       });
@@ -28,6 +28,10 @@ test.describe('Homepage', () => {
       await test.step('should has faq section', async () => {
         await homePage.assertFaqSectionIsVisible();
       });
+
+      await test.step('should match homepage visual snapshot', async () => {
+        await expect(page).toHaveScreenshot('homepage.png');
+      });
     }
   );
 
@@ -36,7 +40,7 @@ test.describe('Homepage', () => {
     {
       tag: ['@smoke', '@desktop', '@mobile'],
     },
-    async () => {
+    async ({ page }) => {
       await test.step('When user search with a valid keyword', async () => {
         await homePage.fillAndSearch('depapp');
       });
@@ -44,6 +48,7 @@ test.describe('Homepage', () => {
       await test.step('Then table should show expected result', async () => {
         await expect(homePage.getUsername('depapp')).toBeVisible();
         await expect(homePage.emptyState).not.toBeVisible();
+        await expect(page).toHaveScreenshot('search-results-valid.png');
       });
 
       await test.step('When user search with non existance keyword', async () => {
@@ -52,6 +57,7 @@ test.describe('Homepage', () => {
 
       await test.step('Then it should show the empty state', async () => {
         await expect(homePage.emptyState).toBeVisible();
+        await expect(page).toHaveScreenshot('search-results-empty.png');
       });
     }
   );
@@ -65,12 +71,13 @@ test.describe('Homepage', () => {
     {
       tag: ['@smoke', '@desktop'],
     },
-    async ({ isMobile }) => {
+    async ({ isMobile, page }) => {
       test.skip(isMobile, '// NOTE: TEST CASE FOR DESKTOP ONLY');
 
       await test.step('When user click toggle column button', async () => {
         await expect(homePage.toggleColumnVisibilityBtn).toBeVisible();
         await homePage.toggleColumnVisibilityBtn.click();
+        await expect(page).toHaveScreenshot('column-visibility-menu.png');
       });
 
       await test.step('And perform toggle hide column "Name"', async () => {
@@ -81,6 +88,7 @@ test.describe('Homepage', () => {
 
       await test.step('Then column "Name" should become invisible', async () => {
         await expect(homePage.getName('Sandhika Galih')).not.toBeVisible();
+        await expect(page).toHaveScreenshot('column-name-hidden.png');
       });
     }
   );
