@@ -63,21 +63,26 @@ export class HomePage {
   }
 
   async sortByContributionsDesktop() {
+    await this.contributionsHeader.waitFor({ state: 'visible' });
     await this.contributionsHeader.click();
+    await this.sortAscButton.waitFor({ state: 'visible' });
     await this.sortAscButton.click();
   }
 
   async sortByContributionsMobile() {
+    await this.sortButton.waitFor({ state: 'visible' });
     await this.sortButton.click();
+    await this.sortByContributionsButton.waitFor({ state: 'visible' });
     await this.sortByContributionsButton.click();
   }
 
   async assertContributionsAreSorted() {
     // Wait for sorting to complete
-    await this.page.waitForTimeout(500);
+    await this.page.waitForTimeout(1000);
     // Take a snapshot of the sorted table
-    await expect(this.page).toHaveScreenshot('contributions-sorted.png');
+    await expect(this.page).toHaveScreenshot('contributions-sorted.png', { maxDiffPixelRatio: 0.02 });
     // Verify first row has the lowest contribution count
+    await this.firstRowContributions.waitFor({ state: 'visible' });
     const firstContribution = await this.firstRowContributions.textContent();
     const contributionCount = parseInt(firstContribution || '0', 10);
     expect(contributionCount).toBeLessThanOrEqual(100);

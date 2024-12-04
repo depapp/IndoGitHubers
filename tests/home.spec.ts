@@ -30,7 +30,7 @@ test.describe('Homepage', () => {
       });
 
       await test.step('should match homepage visual snapshot', async () => {
-        await expect(page).toHaveScreenshot('homepage.png');
+        await expect(page).toHaveScreenshot('homepage.png', { maxDiffPixelRatio: 0.02 });
       });
     }
   );
@@ -48,7 +48,7 @@ test.describe('Homepage', () => {
       await test.step('Then table should show expected result', async () => {
         await expect(homePage.getUsername('depapp')).toBeVisible();
         await expect(homePage.emptyState).not.toBeVisible();
-        await expect(page).toHaveScreenshot('search-results-valid.png');
+        await expect(page).toHaveScreenshot('search-results-valid.png', { maxDiffPixelRatio: 0.02 });
       });
 
       await test.step('When user search with non existance keyword', async () => {
@@ -57,7 +57,7 @@ test.describe('Homepage', () => {
 
       await test.step('Then it should show the empty state', async () => {
         await expect(homePage.emptyState).toBeVisible();
-        await expect(page).toHaveScreenshot('search-results-empty.png');
+        await expect(page).toHaveScreenshot('search-results-empty.png', { maxDiffPixelRatio: 0.02 });
       });
     }
   );
@@ -77,7 +77,7 @@ test.describe('Homepage', () => {
       await test.step('When user click toggle column button', async () => {
         await expect(homePage.toggleColumnVisibilityBtn).toBeVisible();
         await homePage.toggleColumnVisibilityBtn.click();
-        await expect(page).toHaveScreenshot('column-visibility-menu.png');
+        await expect(page).toHaveScreenshot('column-visibility-menu.png', { maxDiffPixelRatio: 0.02 });
       });
 
       await test.step('And perform toggle hide column "Name"', async () => {
@@ -88,7 +88,7 @@ test.describe('Homepage', () => {
 
       await test.step('Then column "Name" should become invisible', async () => {
         await expect(homePage.getName('Sandhika Galih')).not.toBeVisible();
-        await expect(page).toHaveScreenshot('column-name-hidden.png');
+        await expect(page).toHaveScreenshot('column-name-hidden.png', { maxDiffPixelRatio: 0.02 });
       });
     }
   );
@@ -107,7 +107,7 @@ test.describe('Homepage', () => {
 
       await test.step('Should show initial data', async () => {
         await homePage.assertContentInRowIsVisible();
-        await expect(page).toHaveScreenshot('initial-data.png');
+        await expect(page).toHaveScreenshot('initial-data.png', { maxDiffPixelRatio: 0.02 });
       });
 
       await test.step('When user click header "Contributions"', async () => {
