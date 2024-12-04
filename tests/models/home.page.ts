@@ -22,15 +22,16 @@ export class HomePage {
     this.emptyState = page.getByText(/no results/i);
     this.toggleColumnVisibilityBtn = page.getByRole('button', {
       name: /view/i,
+      exact: true
     });
     this.columnNameCheckbox = page.getByRole('menuitemcheckbox', {
       name: /name/i,
     });
-    this.contributionsHeader = page.getByRole('columnheader', { name: /contributions/i });
+    this.contributionsHeader = page.getByRole('button', { name: /contributions/i, exact: true });
     this.sortButton = page.getByRole('button', { name: /sort/i });
     this.sortByContributionsButton = page.getByRole('menuitem', { name: /by contributions/i });
     this.sortAscButton = page.getByRole('menuitem', { name: /ascending/i });
-    this.firstRowContributions = page.locator('tbody tr').first().locator('td').nth(2);
+    this.firstRowContributions = page.locator('tbody tr').first().locator('td').nth(6);
   }
 
   async navigate() {
