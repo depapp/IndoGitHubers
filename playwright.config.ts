@@ -27,6 +27,7 @@ export default defineConfig({
     '{testDir}/__screenshots__/{projectName}/{testFilePath}/{arg}{ext}',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    colorScheme: 'dark',
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'http://localhost:3000',
 

@@ -79,10 +79,9 @@ We have several command to working with E2E:
 - `npm run test:e2e:smoke`, Run all the test case that is included as smoke test group.
 - `npm run test:e2e:desktop`, Run using desktop device only.
 - `npm run test:e2e:mobile`, Run using mobile device only.
-- `npm run test:e2e:visual`, Run visual comparison only.
 - `npm run test:e2e:report`, Run the latest playwright report.
 
-### Run E2E Test Inside Docker
+### E2E for Visual Test
 
 When developing E2E test that is require visual test snapshot, we need to run in the exact same operating system with the CIs. Since our CI using Ubuntu, we need to run our E2E inside Docker to mimick the same system.
 
@@ -90,6 +89,7 @@ When developing E2E test that is require visual test snapshot, we need to run in
 - Run command: `npm run docker`
 - If you facing error, it because some of optional dependencies are needs to be installed in the proper operating system. You can re-run command `npm i` inside the bash terminal in your Docker command.
 - Run the test: `npm run e2e`
+- To regenerate the new snapshot, you need to run command: `npm run test:e2e -- --update-snapshots`
 
 ## 💪 Support me
 
