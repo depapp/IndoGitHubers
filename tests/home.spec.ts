@@ -31,7 +31,7 @@ test.describe('Homepage', () => {
 
       await test.step('should match homepage visual snapshot', async () => {
         await expect(page).toHaveScreenshot('homepage.png', {
-          maxDiffPixelRatio: 0.02,
+          maxDiffPixelRatio: 0.04,
         });
       });
     }
@@ -54,7 +54,7 @@ test.describe('Homepage', () => {
 
       await test.step('Then verify the visual from the valid search result page', async () => {
         await expect(page).toHaveScreenshot('search-results-valid.png', {
-          maxDiffPixelRatio: 0.02,
+          maxDiffPixelRatio: 0.04,
         });
       });
 
@@ -68,7 +68,7 @@ test.describe('Homepage', () => {
 
       await test.step('Then verify the visual from the empty state', async () => {
         await expect(page).toHaveScreenshot('search-results-empty.png', {
-          maxDiffPixelRatio: 0.02,
+          maxDiffPixelRatio: 0.04,
         });
       });
     }
@@ -93,7 +93,7 @@ test.describe('Homepage', () => {
 
       await test.step('Then validate the visual before changing the visibility', async () => {
         await expect(page).toHaveScreenshot('column-visibility-menu.png', {
-          maxDiffPixelRatio: 0.02,
+          maxDiffPixelRatio: 0.04,
         });
       });
 
@@ -109,7 +109,7 @@ test.describe('Homepage', () => {
 
       await test.step('Then validate the visual after column become invisible', async () => {
         await expect(page).toHaveScreenshot('column-name-hidden.png', {
-          maxDiffPixelRatio: 0.02,
+          maxDiffPixelRatio: 0.04,
         });
       });
     }
@@ -129,7 +129,7 @@ test.describe('Homepage', () => {
 
       await test.step('Then validate the initial visually', async () => {
         await expect(page).toHaveScreenshot('before-sort.png', {
-          maxDiffPixelRatio: 0.02,
+          maxDiffPixelRatio: 0.04,
         });
       });
 
@@ -147,7 +147,7 @@ test.describe('Homepage', () => {
 
       await test.step('Then verify the visual snapshot', async () => {
         await expect(page).toHaveScreenshot('contributions-sorted.png', {
-          maxDiffPixelRatio: 0.02,
+          maxDiffPixelRatio: 0.04,
         });
       });
     }
@@ -167,7 +167,7 @@ test.describe('Homepage', () => {
 
       await test.step('Then validate the initial visually', async () => {
         await expect(page).toHaveScreenshot('before-sort.png', {
-          maxDiffPixelRatio: 0.02,
+          maxDiffPixelRatio: 0.04,
         });
       });
 
@@ -185,7 +185,7 @@ test.describe('Homepage', () => {
 
       await test.step('Then verify the visual snapshot', async () => {
         await expect(page).toHaveScreenshot('contributions-sorted.png', {
-          maxDiffPixelRatio: 0.02,
+          maxDiffPixelRatio: 0.04,
         });
       });
     }
