@@ -1,48 +1,71 @@
-import { EmptyState } from '@/components/EmptyState';
-import { Spinner } from '@/components/Spinner';
-import { CardUsers } from '@/components/TableUser/card-users';
-import { columnsDesktop, columnsMobile } from '@/components/TableUser/column';
-import { DataTable } from '@/components/TableUser/data-table';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { } from '@/components/ui/collapsible';
-import DotPattern from '@/components/ui/dot-pattern';
-import ShimmerButton from '@/components/ui/shimmer-button';
-import { useLatestUpdate, useMostActiveUsers } from '@/lib/api';
-import { cn, } from '@/lib/utils';
-import { useMediaQuery } from 'usehooks-ts';
+import { EmptyState } from '@/components/EmptyState'
+import { Spinner } from '@/components/Spinner'
+import { CardUsers } from '@/components/TableUser/card-users'
+import { columnsDesktop, columnsMobile } from '@/components/TableUser/column'
+import { DataTable } from '@/components/TableUser/data-table'
+import { useFilterSearchParams } from '@/components/TableUser/search-params.filter'
+import { usePaginationSearchParams } from '@/components/TableUser/search-params.pagination'
+import { useSortingSearchParams } from '@/components/TableUser/search-params.sorting'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
+import {} from '@/components/ui/collapsible'
+import DotPattern from '@/components/ui/dot-pattern'
+import ShimmerButton from '@/components/ui/shimmer-button'
+import { useLatestUpdate, useMostActiveUsers } from '@/lib/api'
+import { cn } from '@/lib/utils'
+import { useMediaQuery } from 'usehooks-ts'
 
 export const Home = () => {
-  const isMd = useMediaQuery('(min-width: 768px)');
-  const { data, isLoading, isError } = useMostActiveUsers();
-  const { data: lastUpdatedData } = useLatestUpdate();
+  const isMd = useMediaQuery('(min-width: 768px)')
+  const [{ pageIndex, pageSize }, setPageParams] = usePaginationSearchParams()
+  const [{ filterBy, filterValue }, setFilterParams] = useFilterSearchParams()
+  const [{ sortBy, sortDir }, setSortParams] = useSortingSearchParams()
+
+  const { data, isLoading, isError } = useMostActiveUsers()
+  const { data: lastUpdatedData } = useLatestUpdate()
 
   if (isLoading)
     return (
       <div className="relative py-16 max-w-4xl mx-auto flex flex-col justify-center items-center gap-8 text-center">
         <Spinner />
       </div>
-    );
+    )
 
   if (isError)
     return (
-      <EmptyState title='Failed to fetch data statistics, please try again later!' />
-    );
+      <EmptyState title="Failed to fetch data statistics, please try again later!" />
+    )
+
+  const tableProps = {
+    data: data?.users || [],
+    updatedAt: new Date(lastUpdatedData?.[0]?.commit?.committer?.date),
+    // Paginations
+    pageIndex,
+    pageSize,
+    setPageParams,
+    // Filters
+    filterBy,
+    filterValue,
+    setFilterParams,
+    // Sort
+    sortBy,
+    sortDir,
+    setSortParams,
+  }
 
   return (
     <div className="container mx-auto p-4 space-y-10">
-      {isMd ? (
-        <DataTable
-          columns={columnsDesktop}
-          data={data?.users || []}
-          updatedAt={new Date(lastUpdatedData?.[0]?.commit?.committer?.date)}
-        />
-      ) : (
-        <CardUsers
-          columns={columnsMobile}
-          data={data?.users || []}
-          updatedAt={new Date(lastUpdatedData?.[0]?.commit?.committer?.date)}
-        />
-      )}
+      <section>
+        {isMd ? (
+          <DataTable columns={columnsDesktop} {...tableProps} />
+        ) : (
+          <CardUsers columns={columnsMobile} {...tableProps} />
+        )}
+      </section>
 
       <div className="max-w-4xl mx-auto p-4">
         <h2 className="text-center scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
@@ -94,7 +117,7 @@ export const Home = () => {
 
         <DotPattern
           className={cn(
-            '[mask-image:radial-gradient(400px_circle_at_center,white,transparent)]'
+            '[mask-image:radial-gradient(400px_circle_at_center,white,transparent)]',
           )}
         />
 
@@ -113,5 +136,5 @@ export const Home = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

@@ -1,9 +1,8 @@
-'use client';
+'use client'
 
-import type { User } from '@/lib/api';
-import { formatLastUpdated, formatNumber, makeInitial } from '@/lib/utils';
+import type { User } from '@/lib/api'
+import { formatLastUpdated, formatNumber, makeInitial } from '@/lib/utils'
 import {
-  type ColumnDef,
   type ColumnFiltersState,
   type Row,
   type SortingState,
@@ -15,24 +14,19 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from '@tanstack/react-table';
-import { ClockIcon } from 'lucide-react';
-import { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { DEFAULT_CLASSNAMES_RANK, renderRank } from './column';
-import { DataTablePagination } from './data-table-pagination';
-import { DataTableRowActions } from './data-table-row-actions';
-import { DataTableToolbar } from './data-table-toolbar';
-
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-  updatedAt?: Date;
-}
+} from '@tanstack/react-table'
+import { ClockIcon } from 'lucide-react'
+import { Fragment, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+import { DEFAULT_CLASSNAMES_RANK, renderRank } from './column'
+import { DataTablePagination } from './data-table-pagination'
+import { DataTableRowActions } from './data-table-row-actions'
+import { DataTableToolbar } from './data-table-toolbar'
+import type { DataTableProps } from './types'
 
 function renderRowUser({ row }: { row: Row<User> }) {
-  const user = row.original as User;
+  const user = row.original as User
   return (
     <div className="w-full px-4 py-2 rounded gap-4 grid border-b">
       <div className="flex justify-between">
@@ -80,17 +74,39 @@ function renderRowUser({ row }: { row: Row<User> }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export function CardUsers<TData, TValue>({
   columns,
   data,
   updatedAt,
+
+  pageIndex,
+  pageSize,
+  setPageParams,
+
+  filterBy,
+  filterValue,
+  setFilterParams,
+
+  sortBy,
+  sortDir,
+  setSortParams,
 }: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([
+    {
+      id: filterBy,
+      value: filterValue,
+    },
+  ])
+  const [sorting, setSorting] = useState<SortingState>([
+    {
+      id: sortBy,
+      desc: sortDir === 'desc',
+    },
+  ])
 
   const table = useReactTable({
     data,
@@ -108,6 +124,10 @@ export function CardUsers<TData, TValue>({
       sorting,
       columnVisibility,
       columnFilters,
+      pagination: {
+        pageSize: pageSize,
+        pageIndex: pageIndex,
+      },
     },
     initialState: {
       columnVisibility: {
@@ -115,7 +135,7 @@ export function CardUsers<TData, TValue>({
         name: true,
       },
     },
-  });
+  })
 
   return (
     <div className="grid gap-2">
@@ -125,6 +145,9 @@ export function CardUsers<TData, TValue>({
             table={table}
             withTableViewOptions={false}
             withSortOptions={true}
+            filterValue={filterValue}
+            setFilterParams={setFilterParams}
+            setSortParams={setSortParams}
           />
         </div>
         <div className="grid gap-2">
@@ -144,7 +167,11 @@ export function CardUsers<TData, TValue>({
         </div>
 
         <div className="p-4">
-          <DataTablePagination table={table} withPageSize={false} />
+          <DataTablePagination
+            table={table}
+            withPageSize={false}
+            setPageParams={setPageParams}
+          />
         </div>
       </div>
 
@@ -153,5 +180,5 @@ export function CardUsers<TData, TValue>({
         {formatLastUpdated(updatedAt)}
       </p>
     </div>
-  );
+  )
 }

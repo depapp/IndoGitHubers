@@ -1,7 +1,6 @@
-'use client';
+'use client'
 
 import {
-  type ColumnDef,
   type ColumnFiltersState,
   type SortingState,
   type VisibilityState,
@@ -13,7 +12,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from '@tanstack/react-table';
+} from '@tanstack/react-table'
 
 import {
   Table,
@@ -22,27 +21,44 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { formatLastUpdated } from '@/lib/utils';
-import { ClockIcon } from 'lucide-react';
-import { useState } from 'react';
-import { DataTablePagination } from './data-table-pagination';
-import { DataTableToolbar } from './data-table-toolbar';
-
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-  updatedAt?: Date;
-}
+} from '@/components/ui/table'
+import { formatLastUpdated } from '@/lib/utils'
+import { ClockIcon } from 'lucide-react'
+import { useState } from 'react'
+import { DataTablePagination } from './data-table-pagination'
+import { DataTableToolbar } from './data-table-toolbar'
+import type { DataTableProps } from './types'
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   updatedAt,
+
+  pageIndex,
+  pageSize,
+  setPageParams,
+
+  filterBy,
+  filterValue,
+  setFilterParams,
+
+  sortBy,
+  sortDir,
+  setSortParams,
 }: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([
+    {
+      id: filterBy,
+      value: filterValue,
+    },
+  ])
+  const [sorting, setSorting] = useState<SortingState>([
+    {
+      id: sortBy,
+      desc: sortDir === 'desc',
+    },
+  ])
 
   const table = useReactTable({
     data,
@@ -60,6 +76,10 @@ export function DataTable<TData, TValue>({
       sorting,
       columnVisibility,
       columnFilters,
+      pagination: {
+        pageSize: pageSize,
+        pageIndex: pageIndex,
+      },
     },
     initialState: {
       columnVisibility: {
@@ -67,7 +87,7 @@ export function DataTable<TData, TValue>({
         name: true,
       },
     },
-  });
+  })
 
   return (
     <div className="grid gap-2 grid-cols-1">
@@ -77,6 +97,9 @@ export function DataTable<TData, TValue>({
             table={table}
             withTableViewOptions={true}
             withSortOptions={false}
+            filterValue={filterValue}
+            setFilterParams={setFilterParams}
+            setSortParams={setSortParams}
           />
         </div>
         <Table>
@@ -90,10 +113,10 @@ export function DataTable<TData, TValue>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
-                  );
+                  )
                 })}
               </TableRow>
             ))}
@@ -109,7 +132,7 @@ export function DataTable<TData, TValue>({
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}
@@ -129,7 +152,11 @@ export function DataTable<TData, TValue>({
         </Table>
 
         <div className="p-4">
-          <DataTablePagination table={table} withPageSize={true} />
+          <DataTablePagination
+            table={table}
+            withPageSize={true}
+            setPageParams={setPageParams}
+          />
         </div>
       </div>
       <p className="text-muted-foreground flex gap-2 items-center">
@@ -137,5 +164,5 @@ export function DataTable<TData, TValue>({
         {formatLastUpdated(updatedAt)}
       </p>
     </div>
-  );
+  )
 }

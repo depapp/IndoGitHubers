@@ -1,20 +1,23 @@
-import { CopyButton } from '@/components/CopyButton';
-import { EmptyState } from '@/components/EmptyState';
-import { GhCalendar } from '@/components/GhCalendar';
-import { Spinner } from '@/components/Spinner';
-import { DEFAULT_CLASSNAMES_RANK, renderRank } from '@/components/TableUser/column';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+import { CopyButton } from '@/components/CopyButton'
+import { EmptyState } from '@/components/EmptyState'
+import { GhCalendar } from '@/components/GhCalendar'
+import { Spinner } from '@/components/Spinner'
+import {
+  DEFAULT_CLASSNAMES_RANK,
+  renderRank,
+} from '@/components/TableUser/column'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { useMostActiveUsers } from '@/lib/api';
-import { formatNumber, makeInitial, shareToSocial } from '@/lib/utils';
+} from '@/components/ui/select'
+import { useMostActiveUsers } from '@/lib/api'
+import { formatNumber, makeInitial, shareToSocial } from '@/lib/utils'
 import {
   ActivityIcon,
   ArrowLeftIcon,
@@ -23,33 +26,33 @@ import {
   InfoIcon,
   Share2Icon,
   UserCheck2Icon,
-} from 'lucide-react';
-import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+} from 'lucide-react'
+import { useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 export const Detail = () => {
-  const { data, isLoading, isError } = useMostActiveUsers();
-  const { username } = useParams();
+  const { data, isLoading, isError } = useMostActiveUsers()
+  const { username } = useParams()
 
-  const [badgeType, setBadgeType] = useState<string>('markdown');
-  const [styleType, setStyleType] = useState<string>('flat');
+  const [badgeType, setBadgeType] = useState<string>('markdown')
+  const [styleType, setStyleType] = useState<string>('flat')
 
   if (isLoading)
     return (
       <div className="relative py-16 max-w-4xl mx-auto flex flex-col justify-center items-center gap-8 text-center">
         <Spinner />
       </div>
-    );
+    )
 
   if (isError)
     return (
       <EmptyState title="Failed to fetch data statistics, please try again later!" />
-    );
+    )
 
-  const currentUser = data?.users?.find((u) => u.username === username);
+  const currentUser = data?.users?.find((u) => u.username === username)
 
   if (!currentUser) {
-    return <EmptyState title={`Can not found username "${username}"!`} />;
+    return <EmptyState title={`Can not found username "${username}"!`} />
   }
 
   return (
@@ -86,7 +89,7 @@ export const Detail = () => {
             <div className="flex items-center gap-1">
               {renderRank(
                 currentUser?.contributionRank,
-                DEFAULT_CLASSNAMES_RANK
+                DEFAULT_CLASSNAMES_RANK,
               )}{' '}
               • {formatNumber(currentUser?.contributions)}
             </div>
@@ -109,7 +112,7 @@ export const Detail = () => {
           variant="outline"
           size="icon"
           onClick={() => {
-            shareToSocial(currentUser);
+            shareToSocial(currentUser)
           }}
         >
           <Share2Icon />
@@ -180,7 +183,7 @@ export const Detail = () => {
             <div className="flex gap-2 items-center">
               <Select
                 onValueChange={(newValue) => {
-                  setBadgeType(newValue);
+                  setBadgeType(newValue)
                 }}
                 defaultValue={badgeType}
               >
@@ -194,7 +197,7 @@ export const Detail = () => {
               </Select>
               <Select
                 onValueChange={(newValue) => {
-                  setStyleType(newValue);
+                  setStyleType(newValue)
                 }}
                 defaultValue={styleType}
               >
@@ -248,5 +251,5 @@ export const Detail = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

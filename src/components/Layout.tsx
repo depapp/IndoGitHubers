@@ -1,9 +1,9 @@
-import { Analytics } from '@vercel/analytics/react';
-import { GithubIcon } from "lucide-react";
-import { Link, Outlet } from "react-router-dom"
-import { ModeToggle } from "./mode-toggle";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Button } from "./ui/button";
+import { Analytics } from '@vercel/analytics/react'
+import { GithubIcon } from 'lucide-react'
+import { Link, Outlet } from 'react-router-dom'
+import { ModeToggle } from './mode-toggle'
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
+import { Button } from './ui/button'
 
 export const Layout = () => {
   return (
@@ -38,8 +38,10 @@ export const Layout = () => {
       </main>
       <footer className="w-full p-4 border-t">
         <div className="container mx-auto text-center text-muted-foreground">
+          <span>© 2023, built with ☕️</span>
+          <br />
           <span>
-            Since 2023, built with ☕️ by{' '}
+            By{' '}
             <a
               href="https://github.com/depapp/IndoGitHubers/graphs/contributors"
               target="_blank"
@@ -53,5 +55,5 @@ export const Layout = () => {
       </footer>
       <Analytics />
     </>
-  );
+  )
 }

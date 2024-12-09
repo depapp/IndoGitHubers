@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/utils'
 
 export const Spinner = ({ className = '' }: { className?: string }) => {
   return (
@@ -8,7 +8,7 @@ export const Spinner = ({ className = '' }: { className?: string }) => {
           aria-hidden="true"
           className={cn(
             'inline w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600',
-            className
+            className,
           )}
           viewBox="0 0 100 101"
           fill="none"
@@ -26,5 +26,5 @@ export const Spinner = ({ className = '' }: { className?: string }) => {
         <span className="sr-only">Loading...</span>
       </div>
     </div>
-  );
-};
+  )
+}

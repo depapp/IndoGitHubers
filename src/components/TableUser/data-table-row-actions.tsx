@@ -1,28 +1,33 @@
-'use client';
+'use client'
 
-import type { Row } from '@tanstack/react-table';
-import { ActivityIcon, ExternalLink, MoreHorizontal, Share2Icon, } from 'lucide-react';
+import type { Row } from '@tanstack/react-table'
+import {
+  ActivityIcon,
+  ExternalLink,
+  MoreHorizontal,
+  Share2Icon,
+} from 'lucide-react'
 
-import type { User } from '@/lib/api';
-import { shareToSocial } from '@/lib/utils';
-import { Link } from 'react-router-dom';
-import { Button } from '../ui/button';
+import type { User } from '@/lib/api'
+import { shareToSocial } from '@/lib/utils'
+import { Link } from 'react-router-dom'
+import { Button } from '../ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from '../ui/dropdown-menu';
+} from '../ui/dropdown-menu'
 
 interface DataTableRowActionsProps<TData> {
-  row: Row<TData>;
+  row: Row<TData>
 }
 
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const user = row.original as User;
+  const user = row.original as User
 
   return (
     <DropdownMenu>
@@ -38,7 +43,7 @@ export function DataTableRowActions<TData>({
       <DropdownMenuContent align="end" className="w-[160px]">
         <DropdownMenuItem
           onClick={() => {
-            shareToSocial(user);
+            shareToSocial(user)
           }}
         >
           Share
@@ -68,5 +73,5 @@ export function DataTableRowActions<TData>({
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

@@ -1,20 +1,21 @@
-import type { Column } from '@tanstack/react-table';
-import { ArrowDown, ArrowUp, ChevronsUpDown, EyeOff } from 'lucide-react';
+import type { Column } from '@tanstack/react-table'
+import { ArrowDown, ArrowUp, ChevronsUpDown, EyeOff } from 'lucide-react'
 
-import { cn } from '@/lib/utils';
-import { Button } from '../ui/button';
+import { cn } from '@/lib/utils'
+import { Button } from '../ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '../ui/dropdown-menu';
+} from '../ui/dropdown-menu'
+import { useSortingSearchParams } from './search-params.sorting'
 
 interface DataTableColumnHeaderProps<TData, TValue>
   extends React.HTMLAttributes<HTMLDivElement> {
-  column: Column<TData, TValue>;
-  title: string;
+  column: Column<TData, TValue>
+  title: string
 }
 
 export function DataTableColumnHeader<TData, TValue>({
@@ -22,8 +23,10 @@ export function DataTableColumnHeader<TData, TValue>({
   title,
   className,
 }: DataTableColumnHeaderProps<TData, TValue>) {
+  const [_, setSortParams] = useSortingSearchParams()
+
   if (!column.getCanSort()) {
-    return <div className={cn(className)}>{title}</div>;
+    return <div className={cn(className)}>{title}</div>
   }
 
   return (
@@ -46,11 +49,29 @@ export function DataTableColumnHeader<TData, TValue>({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
-          <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
+          <DropdownMenuItem
+            onClick={() => {
+              column.toggleSorting(false)
+
+              setSortParams({
+                sortBy: column.id,
+                sortDir: 'asc',
+              })
+            }}
+          >
             <ArrowUp className="h-3.5 w-3.5 text-muted-foreground/70" />
             Asc
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
+          <DropdownMenuItem
+            onClick={() => {
+              column.toggleSorting(true)
+
+              setSortParams({
+                sortBy: column.id,
+                sortDir: 'desc',
+              })
+            }}
+          >
             <ArrowDown className="h-3.5 w-3.5 text-muted-foreground/70" />
             Desc
           </DropdownMenuItem>
@@ -66,5 +87,5 @@ export function DataTableColumnHeader<TData, TValue>({
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
-  );
+  )
 }
