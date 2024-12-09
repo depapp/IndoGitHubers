@@ -19,23 +19,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: pnpm install
+        run: npm i
 
       - name: Install headless browser
-        run: pnpm run test:setup
+        run: npm run test:setup
 
       - name: Smoke test
-        run: pnpm run test:e2e
+        run: npm run test:e2e
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
