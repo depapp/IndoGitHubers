@@ -41,33 +41,55 @@ Check out the GitHub users who are standing out with the [IndoGitHubers-badge](h
 
 ## 🧑‍💻 How to setup
 
-To install the IndoGitHubers app, you can either clone the repository and run it locally, or you can visit the live version of the app hosted on Vercel at [www.indogithubers.com](https://www.indogithubers.com/).
+### Prerequisites
 
-If you choose to run it locally, follow these steps:
+- Node.js, minimum v20.18.0
+- NPM (included in Node.js), minimum v10.8.2
 
-- Clone the repository
+### Clone the repo
 
 ```bash
 git clone https://github.com/depapp/indogithubers.git
 ```
 
-- Navigate to the project directory
+Then navigate to the project directory
 
 ```bash
 cd indogithubers
 ```
 
-- Install the dependencies
+### Install the dependencies
 
 ```bash
-pnpm install
+npm run install
 ```
 
-- Run the app
+### Run the app
 
 ```bash
-pnpm run dev
+npm run dev
 ```
+
+### Run E2E Test
+
+We have several command to working with E2E:
+
+- `npm run test:setup`, You need to run at least once (if needed).
+- `npm run test:e2e`, Run all the test case inside this project.
+- `npm run test:e2e:smoke`, Run all the test case that is included as smoke test group.
+- `npm run test:e2e:desktop`, Run using desktop device only.
+- `npm run test:e2e:mobile`, Run using mobile device only.
+- `npm run test:e2e:report`, Run the latest playwright report.
+
+### E2E for Visual Test
+
+When developing E2E test that is require visual test snapshot, we need to run in the exact same operating system with the CIs. Since our CI using Ubuntu, we need to run our E2E inside Docker to mimick the same system.
+
+- Make sure you have `Docker` installed
+- Run command: `npm run docker`
+- If you facing error, it because some of optional dependencies are needs to be installed in the proper operating system. You can re-run command `npm i` inside the bash terminal in your Docker command.
+- Run the test: `npm run e2e`
+- To regenerate the new snapshot, you need to run command: `npm run test:e2e -- --update-snapshots`
 
 ## 💪 Support me
 

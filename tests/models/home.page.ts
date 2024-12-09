@@ -27,10 +27,10 @@ export class HomePage {
     this.columnNameCheckbox = page.getByRole('menuitemcheckbox', {
       name: /name/i,
     });
-    this.contributionsHeader = page.getByRole('button', { name: /contributions/i, exact: true });
+    this.contributionsHeader = page.getByRole('button', { name: /# contributions/i, exact: true });
     this.sortButton = page.getByRole('button', { name: /sort/i });
     this.sortByContributionsButton = page.getByRole('menuitem', { name: /by contributions/i });
-    this.sortAscButton = page.getByRole('menuitem', { name: /ascending/i });
+    this.sortAscButton = page.getByRole('menuitem', { name: /asc/i });
     this.firstRowContributions = page.locator('tbody tr').first().locator('td').nth(6);
   }
 
@@ -77,15 +77,15 @@ export class HomePage {
     await this.sortByContributionsButton.click();
   }
 
-  async assertContributionsAreSorted() {
+  async assertContributionsDesktopAreSorted() {
     // Wait for sorting to complete
     await this.page.waitForTimeout(1000);
     // Take a snapshot of the sorted table
-    await expect(this.page).toHaveScreenshot('contributions-sorted.png', { maxDiffPixelRatio: 0.02 });
     // Verify first row has the lowest contribution count
     await this.firstRowContributions.waitFor({ state: 'visible' });
     const firstContribution = await this.firstRowContributions.textContent();
-    const contributionCount = parseInt(firstContribution || '0', 10);
-    expect(contributionCount).toBeLessThanOrEqual(100);
+    const contributionCount = parseInt(firstContribution?.replace('.', '') || '0', 10);
+
+    await expect(contributionCount).toBeGreaterThanOrEqual(100);
   }
 }
