@@ -81,9 +81,15 @@
       ".github/**",
       ".husky/**",
       ".vscode/**",
+      "dist/**",
       "coverage/**",
+      "playwright-report/**",
+      "test-results/**",
       "public/**",
-      "node_modules/**"
+      "node_modules/**",
+      "tsconfig.app.json",
+      "tsconfig.json",
+      "tsconfig.node.json"
     ]
   }
 }

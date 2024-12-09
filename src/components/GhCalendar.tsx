@@ -1,8 +1,8 @@
-import GitHubCalendar from 'react-github-calendar';
-import { useTheme } from './theme-provider';
+import GitHubCalendar from 'react-github-calendar'
+import { useTheme } from './theme-provider'
 
 export const GhCalendar = ({ username }: { username: string }) => {
-  const { theme } = useTheme();
+  const { theme } = useTheme()
 
   return (
     <GitHubCalendar
@@ -10,5 +10,5 @@ export const GhCalendar = ({ username }: { username: string }) => {
       blockSize={16}
       colorScheme={theme === 'system' ? undefined : theme}
     />
-  );
-};
+  )
+}

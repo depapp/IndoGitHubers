@@ -1,8 +1,8 @@
-import { Link, useRouteError } from 'react-router-dom';
+import { Link, useRouteError } from 'react-router-dom'
 
 export default function ErrorPage() {
-  const error = useRouteError() as Error;
-  console.error(error);
+  const error = useRouteError() as Error
+  console.error(error)
 
   return (
     <div id="error-page">
@@ -14,5 +14,5 @@ export default function ErrorPage() {
       </p>
       <Link to="/">Go to the home page</Link>
     </div>
-  );
+  )
 }

@@ -1,7 +1,7 @@
-import path from 'node:path';
-import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
-import { VitePWA } from 'vite-plugin-pwa';
+import path from 'node:path'
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
+import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
   server: {
@@ -70,4 +70,4 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-});
+})

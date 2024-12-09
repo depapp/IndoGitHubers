@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { Button } from "./ui/button";
+import { Link } from 'react-router-dom'
+import { Button } from './ui/button'
 
 export const EmptyState = ({
   title,
@@ -7,10 +7,10 @@ export const EmptyState = ({
   actionLink = '/',
   actionTarget = 'Back to Homepage',
 }: {
-  title: string;
-  subtitle?: string;
-  actionTarget?: string;
-  actionLink?: string;
+  title: string
+  subtitle?: string
+  actionTarget?: string
+  actionLink?: string
 }) => {
   return (
     <div className="relative py-16 max-w-4xl mx-auto flex flex-col justify-center items-center gap-8 text-center">
@@ -34,5 +34,5 @@ export const EmptyState = ({
         <Link to={actionLink}>{actionTarget}</Link>
       </Button>
     </div>
-  );
-};
+  )
+}

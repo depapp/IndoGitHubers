@@ -31,12 +31,12 @@ export function CopyButton({
         disabled={isCopied}
         data-copied={`${isCopied}`}
         onClick={() => {
-          setIsCopied(true);
-          copyTextToClipboard(`${text}`);
+          setIsCopied(true)
+          copyTextToClipboard(`${text}`)
 
           setTimeout(() => {
-            setIsCopied(false);
-          }, 3000);
+            setIsCopied(false)
+          }, 3000)
         }}
       >
         {isCopied ? (
@@ -49,5 +49,5 @@ export function CopyButton({
         ) : null}
       </Button>
     </div>
-  );
+  )
 }
