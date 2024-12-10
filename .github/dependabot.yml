@@ -1,6 +1,6 @@
 version: 2
 updates:
-  # Keep npm dependencies up-to-date
+
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -10,7 +10,6 @@ updates:
       include: "scope"
     open-pull-requests-limit: 10
 
-  # Keep GitHub Actions up-to-date
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -19,7 +18,6 @@ updates:
       prefix: "ci"
     open-pull-requests-limit: 5
 
-  # Keep Docker dependencies up-to-date (if your Next.js app uses Docker)
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
