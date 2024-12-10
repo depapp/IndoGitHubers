@@ -1,8 +1,18 @@
-# IndoGitHubers
+<h1 align="center">🏆 IndoGitHubers</h1>
+<div align="center">
+  <a href="https://www.indogithubers.com/">www.indogithubers.com ↗️</a>
+</div>
 
-[![E2E](https://github.com/depapp/IndoGitHubers/actions/workflows/e2e.yml/badge.svg)](https://github.com/depapp/IndoGitHubers/actions/workflows/e2e.yml) [![Playwight Report](https://img.shields.io/badge/Playwright%20Report-222222?logo=github-pages&logoColor=white)](https://depapp.github.io/IndoGitHubers/)
+---
 
-Live: [www.indogithubers.com](https://www.indogithubers.com/)
+<div align="center">
+  <a href="https://github.com/depapp/IndoGitHubers/actions/workflows/e2e.yml"><img alt="E2E Status" src="https://github.com/depapp/IndoGitHubers/actions/workflows/e2e.yml/badge.svg"></a>
+  <a href="https://depapp.github.io/IndoGitHubers/"><img alt="Playwright Report" src="https://img.shields.io/badge/Playwright-Report-brightGreen?logo=github-pages&logoColor=white"></a>
+  <a href="https://www.indogithubers.com/"><img alt="Website Status" src="https://img.shields.io/website-up-down-brightgreen-red/https/www.indogithubers.com.svg"></a>
+</div>
+
+---
+
 
 | Desktop | Mobile |
 | ------- | ------ |
@@ -39,7 +49,7 @@ Check out the GitHub users who are standing out with the [IndoGitHubers-badge](h
 </details>
 
 
-## 🧑‍💻 How to setup
+## 🧑‍💻 Running Locally
 
 ### Prerequisites
 
@@ -91,6 +101,20 @@ When developing E2E test that is require visual test snapshot, we need to run in
 - Run the test: `npm run e2e`
 - To regenerate the new snapshot, you need to run command: `npm run test:e2e -- --update-snapshots`
 
+## Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdepapp%2FIndoGitHubers)
+
+## Stats
+
+![IndoGitHubers Stats](https://repobeats.axiom.co/api/embed/e6caba10b85e6cac7e192d9a25a34e1a6c0e7a9c.svg "Repobeats analytics image")
+
+## 👥 Contributors
+
+If you'd like to contribute to the IndoGitHubers app, you can fork the repository, make your changes, and submit a pull request. Please make sure to follow the existing code style and add tests for any new functionality.
+
+<a href="https://github.com/depapp/IndoGitHubers/graphs/contributors"><img src="https://contrib.rocks/image?repo=depapp/IndoGitHubers" alt="All the amazing contributors of IndoGitHubers"></a>
+
 ## 💪 Support me
 
 <a href="https://www.nihbuatjajan.com/depapp" target="_blank"><img src="https://d4xyvrfd64gfm.cloudfront.net/buttons/default-cta.png" alt="Nih buat jajan" height="30px"></a>
@@ -99,9 +123,6 @@ When developing E2E test that is require visual test snapshot, we need to run in
 
 <a href="https://www.paypal.me/depapp" target="_blank"><img src="https://www.paypalobjects.com/digitalassets/c/website/marketing/apac/C2/logos-buttons/optimize/44_Yellow_PayPal_Pill_Button.png" height="35px"></a>
 
+---
 
-## 👥 Contributors
-
-If you'd like to contribute to the IndoGitHubers app, you can fork the repository, make your changes, and submit a pull request. Please make sure to follow the existing code style and add tests for any new functionality.
-
-<a href="https://github.com/depapp/IndoGitHubers/graphs/contributors"><img src="https://contrib.rocks/image?repo=depapp/IndoGitHubers" alt="All the amazing contributors of IndoGitHubers"></a>
+© 2023-present
