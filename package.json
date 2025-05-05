@@ -24,7 +24,7 @@
     "docker": "docker run --rm --network host -v $(pwd):/work/ -w /work/ -e GITLAB_AUTH_TOKEN=$GITLAB_AUTH_TOKEN -it mcr.microsoft.com/playwright:v1.49.0-noble /bin/bash"
   },
   "dependencies": {
-    "@radix-ui/react-accordion": "^1.2.1",
+    "@radix-ui/react-accordion": "^1.2.9",
     "@radix-ui/react-avatar": "^1.1.1",
     "@radix-ui/react-collapsible": "^1.1.1",
     "@radix-ui/react-dropdown-menu": "^2.1.2",
