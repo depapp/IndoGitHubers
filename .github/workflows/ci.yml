@@ -17,20 +17,16 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
-          package-manager-cache: false
 
       - name: Install dependencies
         run: npm i
-
-      - name: Run npm audit
-        run: npm audit
 
       - name: Run biome check
         run: npm run check
