@@ -24,16 +24,19 @@
     "docker": "docker run --rm --network host -v $(pwd):/work/ -w /work/ -e GITLAB_AUTH_TOKEN=$GITLAB_AUTH_TOKEN -it mcr.microsoft.com/playwright:v1.49.0-noble /bin/bash"
   },
   "dependencies": {
+    "@babel/helpers": "^7.28.6",
+    "@babel/runtime": "^7.28.6",
     "@radix-ui/react-accordion": "^1.2.11",
-    "@radix-ui/react-avatar": "^1.1.1",
+    "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-collapsible": "^1.1.1",
     "@radix-ui/react-dropdown-menu": "^2.1.2",
-    "@radix-ui/react-popover": "^1.1.2",
+    "@radix-ui/react-popover": "^1.1.14",
     "@radix-ui/react-progress": "^1.1.0",
     "@radix-ui/react-select": "^2.1.2",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-tabs": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.4",
+    "@rollup/plugin-terser": "^1.0.0",
     "@tanstack/react-table": "^8.20.5",
     "@vercel/analytics": "^1.4.1",
     "class-variance-authority": "^0.7.1",
@@ -43,16 +46,16 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-github-calendar": "^4.5.1",
-    "react-router-dom": "^6.28.0",
-    "swr": "^2.2.5",
-    "tailwind-merge": "^2.5.5",
+    "react-router-dom": "^7.6.2",
+    "swr": "^2.3.3",
+    "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
     "usehooks-ts": "^3.1.0",
-    "vite-plugin-pwa": "^0.21.1"
+    "vite-plugin-pwa": "^0.19.8"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@playwright/test": "1.49.0",
+    "@playwright/test": "^1.58.2",
     "@types/node": "^22.10.1",
     "@types/react": "^18.3.14",
     "@types/react-dom": "^18.3.3",
@@ -61,13 +64,16 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.2.10",
     "postcss": "8.4.49",
-    "tailwindcss": "3.4.16",
+    "tailwindcss": "^3.4.19",
     "typescript": "5.7.2",
-    "vite": "^6.0.3"
+    "vite": "^7.3.1"
   },
   "packageManager": "npm@^10.8.2",
   "engines": {
     "node": "^20.x",
     "npm": "^10.8.2"
+  },
+  "overrides": {
+    "serialize-javascript": ">=7.0.3"
   }
 }
