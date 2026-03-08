@@ -24,6 +24,7 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
+          package-manager-cache: false
 
       - name: Install dependencies
         run: npm i
