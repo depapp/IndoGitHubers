@@ -5,9 +5,9 @@ export const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 const ENDPOINT = {
   MOST_ACTIVE_USERS:
-    'https://raw.githubusercontent.com/depapp/most-active-github-users-counter/master/indogithubers.json',
+    'https://raw.githubusercontent.com/tya-code/most-active-github-users-counter/master/indogithubers.json',
   LAST_UPDATED_DATE:
-    'https://api.github.com/repos/depapp/most-active-github-users-counter/commits?path=indogithubers.json&per_page=1',
+    'https://api.github.com/repos/tya-code/most-active-github-users-counter/commits?path=indogithubers.json&per_page=1',
 }
 
 export interface User {
