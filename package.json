@@ -70,7 +70,7 @@
   },
   "packageManager": "npm@^10.8.2",
   "engines": {
-    "node": "^20.x",
+    "node": "22.x",
     "npm": "^10.8.2"
   },
   "overrides": {

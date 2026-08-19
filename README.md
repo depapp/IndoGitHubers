@@ -53,7 +53,7 @@ Check out the GitHub users who are standing out with the [IndoGitHubers-badge](h
 
 ### Prerequisites
 
-- Node.js, minimum v20.18.0
+- Node.js, minimum v22
 - NPM (included in Node.js), minimum v10.8.2
 
 ### Clone the repo
