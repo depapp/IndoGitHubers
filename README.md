@@ -1,6 +1,6 @@
 <h1 align="center">🏆 IndoGitHubers</h1>
 <div align="center">
-  <a href="https://www.indogithubers.com/">www.indogithubers.com ↗️</a>
+  <a href="https://indogithubers.net">indogithubers.net ↗️</a>
 </div>
 
 ---
