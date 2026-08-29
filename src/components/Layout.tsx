@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/react'
 import { GithubIcon } from 'lucide-react'
 import { Link, Outlet } from 'react-router-dom'
+import { LiquidGlassPromo } from './LiquidGlassPromo'
 import { ModeToggle } from './mode-toggle'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { Button } from './ui/button'
@@ -54,6 +55,7 @@ export const Layout = () => {
         </div>
       </footer>
       <Analytics />
+      <LiquidGlassPromo />
     </>
   )
 }

@@ -76,3 +76,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes liquid-sheen {
+  0% {
+    transform: translateX(-150%) skewX(-15deg);
+  }
+  30%,
+  100% {
+    transform: translateX(350%) skewX(-15deg);
+  }
+}
