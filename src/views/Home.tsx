@@ -1,3 +1,4 @@
+import { useMediaQuery } from 'usehooks-ts'
 import { EmptyState } from '@/components/EmptyState'
 import { Spinner } from '@/components/Spinner'
 import { CardUsers } from '@/components/TableUser/card-users'
@@ -12,12 +13,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
-import {} from '@/components/ui/collapsible'
 import DotPattern from '@/components/ui/dot-pattern'
 import ShimmerButton from '@/components/ui/shimmer-button'
 import { useLatestUpdate, useMostActiveUsers } from '@/lib/api'
 import { cn } from '@/lib/utils'
-import { useMediaQuery } from 'usehooks-ts'
 
 export const Home = () => {
   const isMd = useMediaQuery('(min-width: 768px)')

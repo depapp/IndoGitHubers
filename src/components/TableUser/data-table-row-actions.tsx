@@ -7,10 +7,9 @@ import {
   MoreHorizontal,
   Share2Icon,
 } from 'lucide-react'
-
+import { Link } from 'react-router-dom'
 import type { User } from '@/lib/api'
 import { shareToSocial } from '@/lib/utils'
-import { Link } from 'react-router-dom'
 import { Button } from '../ui/button'
 import {
   DropdownMenu,

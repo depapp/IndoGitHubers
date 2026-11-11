@@ -1,12 +1,10 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "organizeImports": {
-    "enabled": true
-  },
+  "$schema": "https://biomejs.dev/schemas/2.5.12/schema.json",
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
+      "preset": "recommended",
       "complexity": {
         "noForEach": "off"
       },
@@ -65,31 +63,33 @@
       "indentStyle": "space"
     },
     "parser": {
-      "cssModules": true
+      "cssModules": true,
+      "tailwindDirectives": true
     }
   },
   "overrides": [
     {
-      "include": ["*.json"],
+      "includes": ["**/*.json"],
       "formatter": {
         "indentWidth": 2
       }
     }
   ],
   "files": {
-    "ignore": [
-      ".github/**",
-      ".husky/**",
-      ".vscode/**",
-      "dist/**",
-      "coverage/**",
-      "playwright-report/**",
-      "test-results/**",
-      "public/**",
-      "node_modules/**",
-      "tsconfig.app.json",
-      "tsconfig.json",
-      "tsconfig.node.json"
+    "includes": [
+      "**",
+      "!**/.github",
+      "!**/.husky",
+      "!**/.vscode",
+      "!**/dist",
+      "!**/coverage",
+      "!**/playwright-report",
+      "!**/test-results",
+      "!**/public",
+      "!**/node_modules",
+      "!**/tsconfig.app.json",
+      "!**/tsconfig.json",
+      "!**/tsconfig.node.json"
     ]
   }
 }
