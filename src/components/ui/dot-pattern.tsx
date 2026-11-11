@@ -3,22 +3,22 @@ import { useId } from 'react'
 import { cn } from '@/lib/utils'
 
 interface DotPatternProps {
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // biome-ignore lint/suspicious/noExplicitAny: SVG attributes accept arbitrary values
   width?: any
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // biome-ignore lint/suspicious/noExplicitAny: SVG attributes accept arbitrary values
   height?: any
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // biome-ignore lint/suspicious/noExplicitAny: SVG attributes accept arbitrary values
   x?: any
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // biome-ignore lint/suspicious/noExplicitAny: SVG attributes accept arbitrary values
   y?: any
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // biome-ignore lint/suspicious/noExplicitAny: SVG attributes accept arbitrary values
   cx?: any
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // biome-ignore lint/suspicious/noExplicitAny: SVG attributes accept arbitrary values
   cy?: any
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // biome-ignore lint/suspicious/noExplicitAny: SVG attributes accept arbitrary values
   cr?: any
   className?: string
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // biome-ignore lint/suspicious/noExplicitAny: SVG attributes accept arbitrary values
   [key: string]: any
 }
 export function DotPattern({

@@ -1,3 +1,14 @@
+import {
+  ActivityIcon,
+  ArrowLeftIcon,
+  ExternalLink,
+  GithubIcon,
+  InfoIcon,
+  Share2Icon,
+  UserCheck2Icon,
+} from 'lucide-react'
+import { useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import { CopyButton } from '@/components/CopyButton'
 import { EmptyState } from '@/components/EmptyState'
 import { GhCalendar } from '@/components/GhCalendar'
@@ -18,17 +29,6 @@ import {
 } from '@/components/ui/select'
 import { useMostActiveUsers } from '@/lib/api'
 import { formatNumber, makeInitial, shareToSocial } from '@/lib/utils'
-import {
-  ActivityIcon,
-  ArrowLeftIcon,
-  ExternalLink,
-  GithubIcon,
-  InfoIcon,
-  Share2Icon,
-  UserCheck2Icon,
-} from 'lucide-react'
-import { useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
 
 export const Detail = () => {
   const { data, isLoading, isError } = useMostActiveUsers()

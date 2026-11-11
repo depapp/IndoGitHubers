@@ -1,5 +1,5 @@
-import { cn } from '@/lib/utils'
 import { ArrowUpRight, Sparkles } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 export function LiquidGlassPromo({ className }: { className?: string }) {
   return (

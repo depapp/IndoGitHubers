@@ -1,23 +1,23 @@
 'use client'
 
-import type { User } from '@/lib/api'
-import { formatLastUpdated, formatNumber, makeInitial } from '@/lib/utils'
 import {
   type ColumnFiltersState,
-  type Row,
-  type SortingState,
-  type VisibilityState,
   getCoreRowModel,
   getFacetedRowModel,
   getFacetedUniqueValues,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  type Row,
+  type SortingState,
   useReactTable,
+  type VisibilityState,
 } from '@tanstack/react-table'
 import { ClockIcon } from 'lucide-react'
 import { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom'
+import type { User } from '@/lib/api'
+import { formatLastUpdated, formatNumber, makeInitial } from '@/lib/utils'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { DEFAULT_CLASSNAMES_RANK, renderRank } from './column'
 import { DataTablePagination } from './data-table-pagination'

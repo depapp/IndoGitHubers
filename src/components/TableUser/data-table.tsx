@@ -2,8 +2,6 @@
 
 import {
   type ColumnFiltersState,
-  type SortingState,
-  type VisibilityState,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -11,9 +9,12 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  type SortingState,
   useReactTable,
+  type VisibilityState,
 } from '@tanstack/react-table'
-
+import { ClockIcon } from 'lucide-react'
+import { useState } from 'react'
 import {
   Table,
   TableBody,
@@ -23,8 +24,6 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { formatLastUpdated } from '@/lib/utils'
-import { ClockIcon } from 'lucide-react'
-import { useState } from 'react'
 import { DataTablePagination } from './data-table-pagination'
 import { DataTableToolbar } from './data-table-toolbar'
 import type { DataTableProps } from './types'

@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error
 import './index.css'
 
 import { NuqsAdapter } from 'nuqs/adapters/react-router'

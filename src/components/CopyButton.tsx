@@ -1,8 +1,8 @@
 'use client'
 
-import { copyTextToClipboard } from '@/lib/utils'
 import { Check, Copy } from 'lucide-react'
 import { useState } from 'react'
+import { copyTextToClipboard } from '@/lib/utils'
 
 import { Button } from './ui/button'
 import { Input } from './ui/input'
@@ -44,9 +44,7 @@ export function CopyButton({
         ) : (
           <Copy className="h-4 w-4 shrink-0" />
         )}
-        {withLabel ? (
-          <>{isCopied ? <span>Copied</span> : <span>Copy</span>}</>
-        ) : null}
+        {withLabel ? isCopied ? <span>Copied</span> : <span>Copy</span> : null}
       </Button>
     </div>
   )

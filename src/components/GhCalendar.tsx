@@ -1,4 +1,4 @@
-import GitHubCalendar from 'react-github-calendar'
+import { GitHubCalendar } from 'react-github-calendar'
 import { useTheme } from './theme-provider'
 
 export const GhCalendar = ({ username }: { username: string }) => {

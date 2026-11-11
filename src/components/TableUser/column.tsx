@@ -1,9 +1,9 @@
 'use client'
 
-import type { User } from '@/lib/api'
-import { cn, formatNumber, makeInitial } from '@/lib/utils'
 import type { ColumnDef } from '@tanstack/react-table'
 import { Link } from 'react-router-dom'
+import type { User } from '@/lib/api'
+import { cn, formatNumber, makeInitial } from '@/lib/utils'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { DataTableColumnHeader } from './data-table-column-header'
 import { DataTableRowActions } from './data-table-row-actions'
